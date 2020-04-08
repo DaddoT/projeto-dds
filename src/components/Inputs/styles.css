@@ -1,0 +1,19 @@
+#inputs {
+    display: flex;
+    margin-top: 15%;
+    margin-left: 300px;
+}
+
+#divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
+
+.App-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 250px;
+}
