@@ -1,13 +1,13 @@
 header#main-header {
     height: 60px;
     width: 100%;
-    background: dodgerblue;
+    background: #282828;
     font-size: 16px;
     font-weight: bold;
     color: floralwhite;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
 }
 p{
     font-family: Arial, Helvetica, sans-serif;
@@ -26,11 +26,9 @@ p{
     display:inline-block;
 }
 
-.App-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 250px;
-    width: 250px;
+img {
+   max-width: 100%;
+   max-height: 80%;
+   margin-left: 1px;
 }
 

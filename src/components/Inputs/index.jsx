@@ -36,7 +36,7 @@ return (
   Sign in
   </Button>
   <div id="divider"/>
-  <Button variant="contained" color="primary">
+  <Button variant="contained" color="default">
   Sign up
   </Button> <br></br> <br></br>
   <a href="a.com">Esqueci minha senha</a>
