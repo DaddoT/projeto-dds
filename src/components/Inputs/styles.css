@@ -17,3 +17,9 @@
     height: 250px;
     width: 250px;
 }
+
+a {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration:none; 
+    color: rgb(66, 41, 209);
+}
