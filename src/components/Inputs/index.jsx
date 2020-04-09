@@ -27,7 +27,9 @@ import "./styles.css";
 return (
 <div id="inputs">
 <form className={classes.textField} noValidate autoComplete="off" >
+  <p2>Insira seu email:</p2>
   <TextField label="Email" variant="filled" type="email" fullWidth/> <br></br><br></br>
+  <p2>Insira sua senha:</p2>
   <TextField label="Senha" variant="filled" type="password" fullWidth/> <br></br><br></br>
   <div id="buttons">
   <Button variant="contained" color="default">
@@ -37,7 +39,7 @@ return (
   <Button variant="contained" color="primary">
   Sign up
   </Button> <br></br> <br></br>
-  <a href="google.com">Esqueci minha senha</a>
+  <a href="a.com">Esqueci minha senha</a>
   </div>
 </form>
 </div>
