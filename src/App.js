@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
-import Inputs from './components/Inputs';
+import Inputs from './components/InputsLogin';
+import SingUp from './components/SignUp';
 import "./styles.css";
 import {
   BrowserRouter as Router,
@@ -17,11 +18,14 @@ return (
     <Route path="/about">
       <About />
     </Route>
-    <Route path="/Pricing">
+    <Route path="/pricing">
       <Pricing />
     </Route>
-    <Route path="/">
+    <Route path="/home">
       <Home />
+    </Route>
+    <Route path="/signup">
+      <SignUp />
     </Route>
   </Switch>
 </Router>
@@ -30,7 +34,7 @@ return (
 
 function Home() {
 return (
-<div className="App">
+<div className="Home">
   <Header />
   <Inputs />
   </div>
@@ -39,18 +43,27 @@ return (
 
 function About() {
 return (
+  <div className="Home">
   <Header />
+ 
+  </div>
 );
 }
 
 function Pricing() {
 return (
+  <div className="Home">
   <Header />
+  
+  </div>
 );
 }
 
-
-
-// export default App;
-
-
+function SignUp() {
+  return (  
+    <div className="SignUp">
+    <Header />
+    <SingUp />
+    </div>
+  );
+}
