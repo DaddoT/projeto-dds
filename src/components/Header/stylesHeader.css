@@ -4,12 +4,13 @@ header#main-header {
     background: #282828;
     font-size: 16px;
     font-weight: bold;
-    color: floralwhite;
+    font-family: monospace;
+    color: white;
     display: flex;
     justify-content: left;
     align-items: left;
 }
-p{
+p2 {
     font-family: monospace;
     color: white;
 }

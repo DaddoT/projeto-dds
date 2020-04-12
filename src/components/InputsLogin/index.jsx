@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
-import "./styles.css";
+import "./stylesLogin.css";
 // import { database } from '../firebase.js';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -55,7 +55,7 @@ import { makeStyles } from '@material-ui/core/styles';
 return (
 <div id="inputs">
   <form className={classes.textField} noValidate autoComplete="off" > {/* onSubmit={onChangeHandler} */}
-    <p2>Insira seu email:</p2>
+    <p>Insira seu email:</p>
     <TextField 
     label="Email" 
     variant="filled" 
@@ -67,7 +67,7 @@ return (
     onChange = {(event) => onChangeHandler(event)} 
     /> <br></br><br></br>
 
-    <p2>Insira sua senha:</p2>
+    <p>Insira sua senha:</p>
     <TextField 
     label="Senha" 
     variant="filled" 
@@ -85,8 +85,8 @@ return (
     </Button> <br></br> <br></br>
     <a href="a.com">Esqueci minha senha</a> <br></br> <br></br>
     
-    <p2>Ainda não possui uma conta?</p2>  <br></br> <br></br>
-    <Button variant="contained" color="default"> <Link to="/signup"> 
+    <p>Ainda não possui uma conta?</p>  <br></br> <br></br>
+    <Button variant="contained" color="default"> <Link to="/options"> 
       Registre-se </Link>
     </Button> <br></br> 
       

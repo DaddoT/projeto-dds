@@ -4,27 +4,27 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import { database } from '../firebase.js';
-import './style.css';
+import './stylesSignUpEmpresarial.css';
 // import { Link } from "react-router-dom";
 
 const SignUp = () => {
-    const [email, setEmail] = useState("");
+    const [nome, setNome] = useState("");
     const [password, setPassword] = useState("");
     // const [displayName, setDisplayName] = useState("");
     // const [error, setError] = useState(null);
     const createUserWithEmailAndPasswordHandler = (event) => {
       event.preventDefault()
-      // const value = event.target.content.value
-      // if ( value !== '' ) {
-          const obj = { email: email , password: password }
+        if ( nome === '' || password === '' ) {
+          alert('Preencher todos os campos')
+        } else {
+          const obj = { nome: nome , password: password }
           console.log(obj)
-          addUser(obj)
-          // event.target.content.value = '';
-      // }
+          addUser(obj)    
+        }
     };
 
     const addUser = (obj) => {
-      database.collection('users')
+      database.collection('empresarial')
       .add(obj)
       .then((doc) => {})
       .catch((err) => {
@@ -35,10 +35,8 @@ const SignUp = () => {
 
     const onChangeHandler = event => {
       const { name, value } = event.currentTarget;
-      console.log(value)
-      console.log(name)
-      if (name === "email") {
-        setEmail(value);
+      if (name === "nome") {
+        setNome(value);
       } else if (name === "password") {
         setPassword(value);
       } 
@@ -64,15 +62,12 @@ const SignUp = () => {
 return (
 <div id="input">
 <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}> {/* onSubmit={onChangeHandler}  onSubmit={createUserWithEmailAndPasswordHandler}*/}
-  <p>Insira seu email:</p>
+  <p>Insira o nome do empresarial:</p>
   <TextField 
-  label="Email" 
+  label="Nome do empresarial" 
   variant="filled" 
-  type="email" 
   fullWidth
-  name="email"
-  // value = {email}
-  // id="userEmail"
+  name="nome"
   onChange = {(event) => onChangeHandler(event)} 
   /> <br></br><br></br>
 
@@ -83,21 +78,19 @@ return (
   type="password" 
   fullWidth
   name="password"
-  // value = {password}
-  // id="userPassword"
   onChange = {(event) => onChangeHandler(event)}
   /> <br></br><br></br>
 
   <div id="buttons">
 
   <Button variant="contained" color="default" type="submit" fullWidth> 
-    Sign up 
+    Criar conta 
   </Button> <br></br> <br></br>
   <p>Já possui uma conta?</p>  <br></br> <br></br>
     <Button variant="contained" color="default" fullWidth> <Link to="/home"> 
       Faça login </Link>
     </Button> <br></br> <br></br>
-    <p>_________________________________________</p>
+    <p>___________________________________</p>
   </div>
 </form>
 </div>

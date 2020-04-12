@@ -1,6 +1,6 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-import "./styles.css";
+import "./stylesHeader.css";
 import logo from './logoHeader.png';
 import { Link } from "react-router-dom";
 
@@ -10,10 +10,9 @@ import { Link } from "react-router-dom";
       <div className="Header">
         <header id ="main-header" > 
         <img src={logo} alt="logo" />
-        <Button > <Link to="/home"><p>Home</p></Link></Button>
-        <Button > <Link to="/about"><p>About</p></Link></Button>
-        <Button > <Link to="/pricing"><p>Pricing </p></Link></Button>
-        <Button > <p>Link </p></Button>
+        <Button > <Link to="/home"><p2>Home</p2></Link></Button>
+        <Button > <Link to="/about"><p2>About</p2></Link></Button>
+        <Button > <Link to="/pricing"><p2>Pricing </p2></Link></Button>
         </header>
               
        </div>

@@ -1,8 +1,11 @@
 import React from 'react';
 import Header from './components/Header';
 import Inputs from './components/InputsLogin';
-import SignUp from './components/SignUp';
+import SignUpUser from './components/SignUpUser';
+import SignUpEmpresa from './components/SignUpEmpresa';
+import SignUpEmpresarial from './components/SignUpEmpresarial';
 import Profile from './components/Profile';
+import Options from './components/Options';
 import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
 import "./styles.css";
@@ -19,26 +22,35 @@ return (
       renders the first one that matches the current URL. */}
   <Switch>
     <Route path="/about">
-      <About />
+      <AboutPage />
     </Route>
     <Route path="/profile">
       <Profile />
     </Route>
     <Route path="/pricing">
-      <Pricing />
+      <PricingPage />
     </Route>
     <Route path="/home">
-      <Home />
+      <HomePage />
     </Route>
-    <Route path="/signup">
-      <SignUpPage />
+    <Route path="/options">
+      <OptionsPage />
+    </Route>
+    <Route path="/signupuser">
+      <SignUpUserPage />
+    </Route>
+    <Route path="/signupempresa">
+      <SignUpEmpresaPage />
+    </Route>
+    <Route path="/signupempresarial">
+      <SignUpEmpresarialPage />
     </Route>
   </Switch>
 </Router>
 );
 }
 
-function Home() {
+function HomePage() {
 return (
 <div className="Home">
   <Header />
@@ -47,7 +59,7 @@ return (
 );
 }
 
-function About() {
+function AboutPage() {
 return (
   <div className="About">
   <Header />
@@ -56,7 +68,7 @@ return (
 );
 }
 
-function Pricing() {
+function PricingPage() {
 return (
   <div className="Pricing">
   <Header />
@@ -65,11 +77,38 @@ return (
 );
 }
 
-function SignUpPage() {
+function SignUpUserPage() {
   return (  
     <div className="SignUp">
     <Header />
-    <SignUp />
+    <SignUpUser />
+    </div>
+  );
+}
+
+function SignUpEmpresaPage() {
+  return (  
+    <div className="SignUp">
+    <Header />
+    <SignUpEmpresa />
+    </div>
+  );
+}
+
+function SignUpEmpresarialPage() {
+  return (  
+    <div className="SignUp">
+    <Header />
+    <SignUpEmpresarial />
+    </div>
+  );
+}
+
+function OptionsPage() {
+  return (  
+    <div className="Options">
+    <Header />
+    <Options />
     </div>
   );
 }
