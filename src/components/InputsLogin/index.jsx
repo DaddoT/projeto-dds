@@ -88,7 +88,8 @@ return (
     <p2>Ainda não possui uma conta?</p2>  <br></br> <br></br>
     <Button variant="contained" color="default"> <Link to="/signup"> 
       Registre-se </Link>
-    </Button> <br></br> <br></br>
+    </Button> <br></br> 
+      
       
     
     </form> 

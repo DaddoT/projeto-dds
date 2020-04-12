@@ -1,6 +1,6 @@
 header#main-header {
     height: 60px;
-    width: 1000%;
+    width: 150%;
     background: #282828;
     font-size: 16px;
     font-weight: bold;
@@ -30,5 +30,6 @@ img {
    max-width: 100%;
    max-height: 80%;
    margin-left: 1px;
+   margin-top: 3px;
 }
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from './components/Header';
 import Inputs from './components/InputsLogin';
-import SingUp from './components/SignUp';
+import SignUp from './components/SignUp';
+import Profile from './components/Profile';
+import AboutText from './components/AboutText';
+import PricingCard from './components/PricingCard';
 import "./styles.css";
 import {
   BrowserRouter as Router,
@@ -18,6 +21,9 @@ return (
     <Route path="/about">
       <About />
     </Route>
+    <Route path="/profile">
+      <Profile />
+    </Route>
     <Route path="/pricing">
       <Pricing />
     </Route>
@@ -25,7 +31,7 @@ return (
       <Home />
     </Route>
     <Route path="/signup">
-      <SignUp />
+      <SignUpPage />
     </Route>
   </Switch>
 </Router>
@@ -43,27 +49,27 @@ return (
 
 function About() {
 return (
-  <div className="Home">
+  <div className="About">
   <Header />
- 
+  <AboutText />
   </div>
 );
 }
 
 function Pricing() {
 return (
-  <div className="Home">
+  <div className="Pricing">
   <Header />
-  
+  <PricingCard />
   </div>
 );
 }
 
-function SignUp() {
+function SignUpPage() {
   return (  
     <div className="SignUp">
     <Header />
-    <SingUp />
+    <SignUp />
     </div>
   );
 }
