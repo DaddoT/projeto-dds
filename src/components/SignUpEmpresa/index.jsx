@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import { database } from '../firebase.js';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import './stylesSignUpEmpresa.css';
 // import { Link } from "react-router-dom";
 
@@ -15,21 +17,19 @@ const SignUp = () => {
     const createUserWithEmailAndPasswordHandler = (event) => {
       event.preventDefault()
         if ( nome === '' || password === '' ) {
-          alert('Preencher todos os campos')
+           alertMessage('erroCampos')
         } else {
           const obj = { nome: nome , password: password }
           console.log(obj)
           addUser(obj)    
         }
     };
-
+    
     const addUser = (obj) => {
       database.collection('empresa')
       .add(obj)
-      .then((doc) => {})
-      .catch((err) => {
-          console.log(err)
-      })
+      .then(alertMessage('success'))
+      .catch(alertMessage('error'))
     
   }
 
@@ -45,23 +45,64 @@ const SignUp = () => {
       // }
     };
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: '35ch',
-    },
-  }));
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+      textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: '35ch',
+      }, alert: {
+        width: '100%',
+        '& > * + *': {
+          marginTop: theme.spacing(2),
+        },
+      }
+    }));
 
-  const classes = useStyles();
+    const classes = useStyles();
+
+    const alertMessage = (severity) => {
+      const typeAlert = severity    
+        if (typeAlert === 'erroCampos') {
+          return (
+              <div className={classes.alert}>
+                <Snackbar open={true} autoHideDuration={2000} >
+                  <Alert severity="error">
+                    Preencher todos os campos
+                  </Alert>
+               </Snackbar>
+              </div>
+          );
+        } else if (typeAlert === 'error') {
+          return (
+            <div className={classes.alert}>
+              <Snackbar open={true} autoHideDuration={2000} >
+                <Alert severity="error">
+                  Erro ao cadastrar
+                </Alert>
+             </Snackbar>
+            </div>
+        );
+        } else if (typeAlert === 'success') {
+          return (
+            <div className={classes.alert}>
+              <Snackbar open={true} autoHideDuration={2000} >
+                <Alert severity="success">
+                  Cadastro realizado com sucesso
+                </Alert>
+             </Snackbar>
+            </div>
+        );
+        }
+
+    }
 
 return (
 <div id="input">
-<form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}> {/* onSubmit={onChangeHandler}  onSubmit={createUserWithEmailAndPasswordHandler}*/}
+<form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
   <p>Insira o nome da empresa:</p>
   <TextField 
   label="Nome da empresa" 
