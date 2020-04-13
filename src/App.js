@@ -25,7 +25,7 @@ return (
       <AboutPage />
     </Route>
     <Route path="/profile">
-      <Profile />
+      <ProfilePage />
     </Route>
     <Route path="/pricing">
       <PricingPage />
@@ -33,17 +33,8 @@ return (
     <Route path="/home">
       <HomePage />
     </Route>
-    <Route path="/options">
-      <OptionsPage />
-    </Route>
-    <Route path="/signupuser">
+    <Route path="/signup">
       <SignUpUserPage />
-    </Route>
-    <Route path="/signupempresa">
-      <SignUpEmpresaPage />
-    </Route>
-    <Route path="/signupempresarial">
-      <SignUpEmpresarialPage />
     </Route>
   </Switch>
 </Router>
@@ -109,6 +100,15 @@ function OptionsPage() {
     <div className="Options">
     <Header />
     <Options />
+    </div>
+  );
+}
+
+function ProfilePage() {
+  return (  
+    <div className="Profile">
+    <Header />
+    <Profile />
     </div>
   );
 }

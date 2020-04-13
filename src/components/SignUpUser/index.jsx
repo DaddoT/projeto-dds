@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
-import { database, auth } from '../firebase.js';
+import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
 import Alert from '@material-ui/lab/Alert';
 
@@ -21,24 +21,17 @@ const SignUp = () => {
   } else {
     const obj = { email: email , password: password }
     console.log(obj)
-
-    
-    auth.createUserWithEmailAndPassword(email, password).then(()=>{
-      alert("Alterta")
-    }).catch((reason)=>{
-      console.log(reason)
-    })
-    //addUser(obj)
+    addUser(obj)
   }
 };
 
 const addUser = (obj) => {
-database.collection('users')
-    .add(obj)
-    .then((doc) => {})
-    .catch((err) => {
-    console.log(err)
-    })
+  auth.createUserWithEmailAndPassword(email, password).then(()=>{
+    alert("Alterta")
+  }).catch((reason)=>{
+    //
+    console.log(reason)
+  })
 }
 
 const onChangeHandler = event => {
@@ -92,9 +85,6 @@ return (
             Faça login </Link>
           </Button> <br></br> <br></br>
           <p>___________________________________</p> <br></br>
-          <Button variant="contained" color="default" fullWidth>
-            Sign-in com Google 
-          </Button> 
         </div>
   </form>
 </div>
