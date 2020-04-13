@@ -46,14 +46,29 @@ console.log(error);
 }
 
 
-// const Login = (obj) => {
-// database.collection('users')
-// .doc(obj)
-// .then((doc) => {})
-// .catch((err) => {
-// console.log(err)
-// })
-// }
+const Login = (event) => {
+  //const [email, setEmail] = useState("");
+  //const [password, setPassword] = useState("");
+
+
+  event.preventDefault()
+  if ( email === '' || password === '' ) {
+    alert('Preencher todos os campos')
+  } else {
+
+    auth.signInWithEmailAndPassword(email, password).then((e)=>{
+      history.push("profile");
+    }).catch((e)=>{
+      alert(e.message);      
+    })
+
+    const obj = { email: email , password: password }
+    console.log(obj)
+    //addUser(obj)
+  }
+
+};
+
 
 // export default function Inputs() {
 const classes = useStyles();
@@ -79,7 +94,7 @@ setPassword(value);
 
 return (
 <div id="inputs">
-  <form className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
+  <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
     <p>Insira seu email:</p>
     <TextField label="Email" variant="filled" type="email" fullWidth name="userEmail" value={email} id="userEmail"
       onChange={(event)=> onChangeHandler(event)}

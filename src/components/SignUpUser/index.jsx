@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
 import Alert from '@material-ui/lab/Alert';
@@ -10,6 +10,9 @@ import Alert from '@material-ui/lab/Alert';
 // import { Link } from "react-router-dom";
 
 const SignUp = () => {
+
+  var history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [displayName, setDisplayName] = useState("");
@@ -26,11 +29,10 @@ const SignUp = () => {
 };
 
 const addUser = (obj) => {
-  auth.createUserWithEmailAndPassword(email, password).then(()=>{
-    alert("Alterta")
+  auth.createUserWithEmailAndPassword(obj.email, obj.password).then(()=>{
+    history.push("profile");
   }).catch((reason)=>{
-    //
-    console.log(reason)
+    alert(reason.message);
   })
 }
 
