@@ -91,7 +91,10 @@ return (
             <Link to="/home">
             Faça login </Link>
           </Button> <br></br> <br></br>
-          <p>___________________________________</p>
+          <p>___________________________________</p> <br></br>
+          <Button variant="contained" color="default" fullWidth>
+            Sign-in com Google 
+          </Button> 
         </div>
   </form>
 </div>

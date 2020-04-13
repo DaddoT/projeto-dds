@@ -83,6 +83,9 @@ return (
     <Button variant="contained" color="default" type="submit">
       Log in
     </Button> <br></br> <br></br>
+    <Button variant="contained" color="default">
+            Sign-in com Google 
+          </Button> <br></br> <br></br>
     <a href="a.com">Esqueci minha senha</a> <br></br> <br></br>
     
     <p>Ainda não possui uma conta?</p>  <br></br> <br></br>

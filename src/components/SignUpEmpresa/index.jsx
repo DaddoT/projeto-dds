@@ -9,7 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import './stylesSignUpEmpresa.css';
 // import { Link } from "react-router-dom";
 
-const SignUp = () => {
+export default function SignUp () {
     const [nome, setNome] = useState("");
     const [password, setPassword] = useState("");
     // const [displayName, setDisplayName] = useState("");
@@ -56,17 +56,15 @@ const SignUp = () => {
         width: '35ch',
       }, alert: {
         width: '100%',
-        '& > * + *': {
-          marginTop: theme.spacing(2),
-        },
-      }
+        
+      },
     }));
 
     const classes = useStyles();
 
-    const alertMessage = (severity) => {
-      const typeAlert = severity    
-        if (typeAlert === 'erroCampos') {
+    const alertMessage = (severity) => {   
+      console.log(severity)
+        if (severity === 'erroCampos') {
           return (
               <div className={classes.alert}>
                 <Snackbar open={true} autoHideDuration={2000} >
@@ -76,7 +74,7 @@ const SignUp = () => {
                </Snackbar>
               </div>
           );
-        } else if (typeAlert === 'error') {
+        } else if (severity === 'error') {
           return (
             <div className={classes.alert}>
               <Snackbar open={true} autoHideDuration={2000} >
@@ -86,7 +84,7 @@ const SignUp = () => {
              </Snackbar>
             </div>
         );
-        } else if (typeAlert === 'success') {
+        } else if (severity === 'success') {
           return (
             <div className={classes.alert}>
               <Snackbar open={true} autoHideDuration={2000} >
@@ -97,8 +95,7 @@ const SignUp = () => {
             </div>
         );
         }
-
-    }
+      }
 
 return (
 <div id="input">
@@ -135,9 +132,7 @@ return (
   </div>
 </form>
 </div>
-
 );
-
 }
 
-export default SignUp;
+// export default SignUp;
