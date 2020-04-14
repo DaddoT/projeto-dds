@@ -7,13 +7,6 @@ import './stylesProfile.css';
 export default function ProfilePage(){
   var history = useHistory();
 
-  auth.onAuthStateChanged(function(user) {
-    if (!user) {
-      history.push("home");
-      return;
-    }
-    
-  });
 
   const signOut = ()=>{
     auth.signOut().then(()=>{

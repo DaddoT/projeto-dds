@@ -11,15 +11,6 @@ export default function Inputs() {
 var history = useHistory();
 
 
-auth.onAuthStateChanged(function(user) {
-  if (user) {
-    history.push("profile");
-    return;
-  }
-
-});
-
-
 const useStyles = makeStyles((theme) => ({
 root: {
 display: 'flex',
