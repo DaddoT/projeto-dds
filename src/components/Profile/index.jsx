@@ -31,9 +31,9 @@ export default function ProfilePage(){
   <div className="Options">
 
   <div className="ButtonsDash">
-    <Button color="default" ><p className={classes.p}>Registrar empresa</p></Button>
+    <Button color="default" fullWidth><p className={classes.p}>Registrar empresa</p></Button>
     <div id="divider" />
-    <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
+    <Button color="default" fullWidth ><p className={classes.p}>Registrar empresarial</p></Button>
     </div>
       
       <div className="ButtonsDeslog">
