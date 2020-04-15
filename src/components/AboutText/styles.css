@@ -6,12 +6,3 @@ h1 {
     align-items: center;
     font-size: 70px;
 }
-
-p3 {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    font-family: monospace;
-}
