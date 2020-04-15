@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-
-
 import Header from './components/Header';
 import Inputs from './components/InputsLogin';
 import SignUpUser from './components/SignUpUser';
-import SignUpEmpresa from './components/SignUpEmpresa';
-import SignUpEmpresarial from './components/SignUpEmpresarial';
 import Profile from './components/Profile';
 import Options from './components/Options';
 import AboutText from './components/AboutText';
@@ -158,23 +154,23 @@ function SignUpUserPage() {
   );
 }
 
-function SignUpEmpresaPage() {
-  return (  
-    <div className="SignUp">
-    <Header />
-    <SignUpEmpresa />
-    </div>
-  );
-}
+// function SignUpEmpresaPage() {
+//   return (  
+//     <div className="SignUp">
+//     <Header />
+//     <SignUpEmpresa />
+//     </div>
+//   );
+// }
 
-function SignUpEmpresarialPage() {
-  return (  
-    <div className="SignUp">
-    <Header />
-    <SignUpEmpresarial />
-    </div>
-  );
-}
+// function SignUpEmpresarialPage() {
+//   return (  
+//     <div className="SignUp">
+//     <Header />
+//     <SignUpEmpresarial />
+//     </div>
+//   );
+// }
 
 function OptionsPage() {
   return (  

@@ -3,6 +3,7 @@ import {Button} from "@material-ui/core";
 import { fb, database, auth } from '../firebase.js';
 import { Link, useHistory } from "react-router-dom";
 import './stylesProfile.css';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default function ProfilePage(){
   var history = useHistory();
@@ -15,18 +16,28 @@ export default function ProfilePage(){
 
   };
 
+  const useStyles = makeStyles((theme) => ({
+    p: {
+      fontFamily: 'monospace',
+      color: 'white',
+      fontSize: '15px',
+    },
+    }));
+
+    const classes = useStyles()
+
   return (
 <div className="Page">
   <div className="Options">
 
   <div className="ButtonsDash">
-    <Button color="default" ><p4>Registrar empresa</p4></Button>
+    <Button color="default" ><p className={classes.p}>Registrar empresa</p></Button>
     <div id="divider" />
-    <Button color="default" ><p4>Registrar empresarial</p4></Button>
+    <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
     </div>
       
       <div className="ButtonsDeslog">
-    <Button color="default"  onClick={()=>signOut()}><p4>Deslogar</p4></Button> <br></br> <br></br> 
+    <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br></br> <br></br> 
       </div>
 
   </div>

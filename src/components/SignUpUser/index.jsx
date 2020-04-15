@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from "react-router-dom";
 import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
-import Alert from '@material-ui/lab/Alert';
+
 
 // import { Link } from "react-router-dom";
 
