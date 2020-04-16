@@ -5,7 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 import './stylesProfile.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../Header';
-
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import List from '@material-ui/core/List';
 
 export default function ProfilePage(props){
   var history = useHistory();
@@ -19,41 +22,53 @@ export default function ProfilePage(props){
 
   };
 
+  const drawerWidth = 180;
+
   const useStyles = makeStyles((theme) => ({
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+      backgroundColor: '#282828',
+    },
     p: {
       fontFamily: 'monospace',
       color: 'white',
-      fontSize: '15px',
+      fontSize: '12px',
+      marginLeft: '10px',
     },
-    }));
+    log: {
+      fontFamily: 'monospace',
+      color: 'white',
+      fontSize: '15px',
+      marginLeft: '10px',
+      marginTop: '-18px',
+    },
+  }));
 
     const classes = useStyles()
 
   return (
 
-<div className="Profile">
-  <Header/>
-  <div className="Page">
-
-    <div className="Options">
-
+<div className="Page">
+    <AppBar position="fixed" className={classes.appBar}>
+        <Header />
+    </AppBar>
+  <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
     <div className="ButtonsDash">
-      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
-      <div id="divider" />
-      <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
-      </div>
-      <div className="ButtonsDeslog">
-      <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br /> <br /> 
+      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Criar empresa</p></Link></Button>
+      <Button color="default" ><p className={classes.p}>Criar empresarial</p></Button> 
+      <div className="ButtonsDeslog">     
+      <Button color="default" onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button>
       </div>
     </div>
+  </Drawer>
 
     <div className="dashboard" >
-
-      <p className={classes.p}>Logged as {props.user[1]}</p>
-
-    </div>  
+    <p className={classes.log}>Olá, {props.user[1]}</p>  
+    </div>
   </div>
-</div>
   );
 }
 

@@ -5,13 +5,28 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from "react-router-dom";
 import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
-
-
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+import { render } from '@testing-library/react';
 // import { Link } from "react-router-dom";
 
 const SignUp = () => {
 
-  var history = useHistory();
+  const history = useHistory();
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    },
+    textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '35ch',
+    },
+    }));
+    
+  const classes = useStyles();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +47,7 @@ const addUser = (obj) => {
   auth.createUserWithEmailAndPassword(obj.email, obj.password).then(()=>{
     history.push("profile");
   }).catch((reason)=>{
-    alert(reason.message);
+     alert(reason.message);
   })
 }
 
@@ -48,19 +63,7 @@ setPassword(value);
 // }
 };
 
-const useStyles = makeStyles((theme) => ({
-root: {
-display: 'flex',
-flexWrap: 'wrap',
-},
-textField: {
-marginLeft: theme.spacing(1),
-marginRight: theme.spacing(1),
-width: '35ch',
-},
-}));
 
-const classes = useStyles();
 
 return (
 <div id="input">

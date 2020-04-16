@@ -15,7 +15,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react'
 import Empresa from './components/Empresa';
 
 
