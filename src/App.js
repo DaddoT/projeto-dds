@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import Options from './components/Options';
 import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
+import Loader from './components/Loader';
 import { fb, database, auth } from './components/firebase.js';
 
 import "./styles.css";
@@ -81,7 +82,7 @@ export default class App extends Component {
 
   render(){
     if (this.state.loading){
-      return (<h1>loading..</h1>)
+      return (<Loader />)
     }
     console.log(this.state)
     return (

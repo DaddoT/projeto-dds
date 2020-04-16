@@ -10,7 +10,7 @@ import Header from '../Header';
 export default function ProfilePage(props){
   var history = useHistory();
 
-  console.log(props);
+  console.log(props)
 
   const signOut = ()=>{
     auth.signOut().then(()=>{
@@ -49,7 +49,7 @@ export default function ProfilePage(props){
 
     <div className="dashboard" >
 
-      <p>{props.user}</p>
+      <p className={classes.p}>Logged as {props.user[1]}</p>
 
     </div>  
   </div>

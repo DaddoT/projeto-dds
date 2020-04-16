@@ -2,11 +2,25 @@ import React, {useState} from 'react';
 import { TextField, Button } from '@material-ui/core';
 import Header from '../Header';
 import cep from 'cep-promise'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+form: {
+marginLeft: '30px',
+marginTop: '80px',
+}, divider: {
+minWidth: '10px',
+height: 'auto',
+display: 'inline-block',
+},
+}));
+
 
 
 //import './.css';
 
 export default function Empresa(props:any) {
+    const classes = useStyles();
     console.log(props)
 
     const [state, setState] = useState({
@@ -36,9 +50,6 @@ export default function Empresa(props:any) {
                 cidade: e.city
             })
         })
-
-
-
     }
 
     const _maskCEP = (val:String) => {
@@ -51,31 +62,28 @@ export default function Empresa(props:any) {
     return(
         <div className="Empresa">
             <Header/>
-            <div>
+            <div className={classes.form}>
                 <form onSubmit={(e)=>onSubmit(e)}>
-                    <TextField variant="filled" name="name" label="Nome"/>
-                    <br/>
+                    <p>Insira os dados da empresa</p> <br />
+                    <TextField variant="filled" name="name" label="Nome"/> <div className={classes.divider} />
                     <TextField variant="filled" name="name-f" label="Nome fantasia"/>
                     <br/>
-                    <TextField variant="filled" name="cnpj" label="CNPJ"/>
-                    <br/>
+                    <TextField variant="filled" name="cnpj" label="CNPJ"/>  <div className={classes.divider} />                 
                     <TextField variant="filled" name="email" label="e-mail"/>
                     <br/>
-                    <TextField variant="filled" name="cep" onChange={(e)=>e.target.value = _maskCEP(e.target.value)} onBlur={(e)=>consultaCEP(e)} label="CEP"/>
-                    <br/>
+                    <TextField variant="filled" name="cep" onChange={(e)=>e.target.value = _maskCEP(e.target.value)} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
                     <TextField variant="filled" name="logradouro" value={state.rua} onChange={(e)=>console.log("fsfjdskfd")} label="Logradouro"/>
                     <br/>
-                    <TextField variant="filled" label="Numero"/>
-                    <br/>
+                    <TextField variant="filled" label="Numero"/>  <div className={classes.divider} />                  
                     <TextField variant="filled" value={state.cidade} label="Cidade"/>
                     <br/>
-                    <TextField variant="filled" value={state.estado} label="Estado"/>
-                    <br/>
+                    <TextField variant="filled" value={state.estado} label="Estado"/> <div className={classes.divider} />
                     <TextField variant="filled" label="Complemento"/>
-                    <br/>
+                    <br/> <br />
                     <Button type="submit" variant="contained" color="default">Criar</Button> 
                 </form>
             </div>
+
         </div>
     );
 }

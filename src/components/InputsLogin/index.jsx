@@ -89,27 +89,27 @@ return (
     <p>Insira seu email:</p>
     <TextField label="Email" variant="filled" type="email" fullWidth name="userEmail" value={email} id="userEmail"
       onChange={(event)=> onChangeHandler(event)}
-      /> <br></br><br></br>
+      /> <br /><br />
 
       <p>Insira sua senha:</p>
       <TextField label="Senha" variant="filled" type="password" fullWidth name="userPassword" value={password}
         id="userPassword" onChange={(event)=> onChangeHandler(event)}
-        /> <br></br><br></br>
+        /> <br /><br />
 
 
         <Button variant="contained" color="default" type="submit">
           Log in
-        </Button> <br></br> <br></br>
+        </Button> <br /> <br />
         <Button variant="contained" onClick={()=>signUpGoogle()} color="default">
           Sign-in com Google
-        </Button> <br></br> <br></br>
-        <a href="a.com">Esqueci minha senha</a> <br></br> <br></br>
+        </Button> <br /> <br />
+        <a href="a.com">Esqueci minha senha</a> <br /> <br />
 
-        <p>Ainda não possui uma conta?</p> <br></br> <br></br>
+        <p>Ainda não possui uma conta?</p> <br /> <br />
         <Button variant="contained" color="default">
           <Link to="/signup">
           Registre-se </Link>
-        </Button> <br></br>
+        </Button> <br />
 
 
 
