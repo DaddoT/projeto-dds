@@ -5,25 +5,10 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 const useStyles = makeStyles({
-  card1: {
+  card: {
     minHeight: 600,
     minWidth: 350,
-    // marginLeft: 80,
-    // marginTop: 20,
-    backgroundColor: '#282828',
-  },
-  card2: {
-    minHeight: 600,
-    minWidth: 350,
-    // marginLeft: 533, 
-    // marginTop: -635,
-    backgroundColor: '#282828',
-  },
-  card3: {
-    minHeight: 600,
-    minWidth: 350,
-    // marginLeft: 980,
-    // marginTop: -600,
+    borderRadius: '15px 50px 15px',
     backgroundColor: '#282828',
   },
   cards: {
@@ -44,7 +29,7 @@ export default function SimpleCard() {
   
   return (
   <div className={classes.cards}>        
-<Card className={classes.card1}>
+<Card className={classes.card}>
     <CardContent>
         
 
@@ -52,7 +37,7 @@ export default function SimpleCard() {
     </CardContent>
 </Card> 
   <div className={classes.divider} />
-<Card className={classes.card2}>
+<Card className={classes.card}>
     <CardContent>
  
 
@@ -60,7 +45,7 @@ export default function SimpleCard() {
     </CardContent>
 </Card>
 <div className={classes.divider} />
-<Card className={classes.card3}>
+<Card className={classes.card}>
     <CardContent>
  
 
