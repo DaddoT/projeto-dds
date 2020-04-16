@@ -8,7 +8,6 @@ import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
 import Loader from './components/Loader';
 import { fb, database, auth } from './components/firebase.js';
-
 import "./styles.css";
 import {
   BrowserRouter as Router,
