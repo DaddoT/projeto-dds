@@ -11,19 +11,23 @@ export default function AboutText() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-      fontFamily: 'monospace',
-      color: 'white',
-      fontSize: '15px',
-    },
+    fontFamily: 'monospace',
+    color: 'white',
+    fontSize: '15px',
+    }, 
     }));
 
     const classes = useStyles()
 
     return(
         <div>
-        <h1>Lorem ipsum dolor sit amet </h1> <br></br>
+        <h1>Lorem ipsum dolor sit amet </h1> 
 
-        <p className={classes.p}>a</p>
+          <div className="dashboard" >
+
+            
+
+          </div>  
         </div>
     );
 }
