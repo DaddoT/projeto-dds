@@ -12,6 +12,14 @@ marginTop: '80px',
 minWidth: '10px',
 height: 'auto',
 display: 'inline-block',
+}, empresas: {
+position: 'absolute',
+top: '15vh',
+marginLeft: '32%',
+backgroundColor: '#282828', 
+width: '65%',
+height: '80vh',
+borderRadius: '15px 100px 15px',
 },
 }));
 
@@ -65,25 +73,28 @@ export default function Empresa(props:any) {
             <div className={classes.form}>
                 <form onSubmit={(e)=>onSubmit(e)}>
                     <p>Insira os dados da empresa</p> <br />
-                    <TextField variant="filled" name="name" label="Nome"/> <div className={classes.divider} />
-                    <TextField variant="filled" name="name-f" label="Nome fantasia"/>
+                    <TextField variant="outlined" name="name" label="Nome" size="small" id="standard-size-small"/> <div className={classes.divider} />
+                    <TextField variant="outlined" name="name-f" label="Nome fantasia" size="small" id="standard-size-small"/> <br/>
                     <br/>
-                    <TextField variant="filled" name="cnpj" label="CNPJ"/>  <div className={classes.divider} />                 
-                    <TextField variant="filled" name="email" label="e-mail"/>
+                    <TextField variant="outlined" name="cnpj" label="CNPJ" size="small" id="standard-size-small"/>  <div className={classes.divider} />                 
+                    <TextField variant="outlined" name="email" label="E-mail" size="small" id="standard-size-small"/> <br/>
                     <br/>
-                    <TextField variant="filled" name="cep" onChange={(e)=>e.target.value = _maskCEP(e.target.value)} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
-                    <TextField variant="filled" name="logradouro" value={state.rua} onChange={(e)=>console.log("fsfjdskfd")} label="Logradouro"/>
+                    <TextField variant="outlined" size="small" id="standard-size-small" name="cep" onChange={(e)=>e.target.value = _maskCEP(e.target.value)} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
+                    <TextField variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} onChange={(e)=>console.log("fsfjdskfd")} label="Logradouro"/><br/>
                     <br/>
-                    <TextField variant="filled" label="Numero"/>  <div className={classes.divider} />                  
-                    <TextField variant="filled" value={state.cidade} label="Cidade"/>
+                    <TextField variant="outlined" size="small" id="standard-size-small" label="Numero"/>  <div className={classes.divider} />                  
+                    <TextField variant="outlined" size="small" id="standard-size-small" value={state.cidade} label="Cidade"/> <br/>
                     <br/>
-                    <TextField variant="filled" value={state.estado} label="Estado"/> <div className={classes.divider} />
-                    <TextField variant="filled" label="Complemento"/>
+                    <TextField variant="outlined" size="small" id="standard-size-small" value={state.estado} label="Estado"/> <div className={classes.divider} />
+                    <TextField variant="outlined" size="small" id="standard-size-small" label="Complemento"/>
                     <br/> <br />
                     <Button type="submit" variant="contained" color="default">Criar</Button> 
                 </form>
             </div>
+            {/* <style>borderRadius: '15px 100px 15px',</style> */}
+            <div className={classes.empresas}>
 
+            </div>
         </div>
     );
 }

@@ -103,7 +103,7 @@ return (
   <p>Insira o nome da empresa:</p>
   <TextField 
   label="Nome da empresa" 
-  variant="filled" 
+  variant="outlined" 
   fullWidth
   name="nome"
   onChange = {(event) => onChangeHandler(event)} 
@@ -112,7 +112,7 @@ return (
   <p>Insira sua senha:</p>
   <TextField 
   label="Senha" 
-  variant="filled" 
+  variant="outlined" 
   type="password" 
   fullWidth
   name="password"

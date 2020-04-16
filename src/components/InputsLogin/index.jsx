@@ -86,13 +86,13 @@ setPassword(value);
 return (
 <div id="inputs">
   <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
-    <p>Insira seu email:</p>
-    <TextField label="Email" variant="filled" type="email" fullWidth name="userEmail" value={email} id="userEmail"
+    <p>Insira seu email:</p> <br/>
+    <TextField label="Email" variant="outlined" type="email" fullWidth name="userEmail" value={email} id="userEmail"
       onChange={(event)=> onChangeHandler(event)}
       /> <br /><br />
 
-      <p>Insira sua senha:</p>
-      <TextField label="Senha" variant="filled" type="password" fullWidth name="userPassword" value={password}
+      <p>Insira sua senha:</p> <br/>
+      <TextField label="Senha" variant="outlined" type="password" fullWidth name="userPassword" value={password}
         id="userPassword" onChange={(event)=> onChangeHandler(event)}
         /> <br /><br />
 

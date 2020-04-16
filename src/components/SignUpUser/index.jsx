@@ -5,10 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from "react-router-dom";
 import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
-import Alert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar';
-import { render } from '@testing-library/react';
-// import { Link } from "react-router-dom";
 
 const SignUp = () => {
 
@@ -69,13 +65,13 @@ return (
 <div id="input">
   <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
     {/* onSubmit={onChangeHandler} onSubmit={createUserWithEmailAndPasswordHandler}*/}
-    <p>Insira seu email:</p>
-    <TextField label="Email" variant="filled" type="email" fullWidth name="email" onChange={(event)=>
+    <p>Insira seu email:</p> <br/>
+    <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
       onChangeHandler(event)}
       /> <br /><br />
 
-      <p>Insira sua senha:</p>
-      <TextField label="Senha" variant="filled" type="password" fullWidth name="password" onChange={(event)=>
+      <p>Insira sua senha:</p> <br/>
+      <TextField label="Senha" variant="outlined" type="password" fullWidth name="password" onChange={(event)=>
         onChangeHandler(event)}
         /> <br /><br />
 

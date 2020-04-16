@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Inputs from './components/InputsLogin';
 import SignUpUser from './components/SignUpUser';
 import Profile from './components/Profile';
-import Options from './components/Options';
 import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
 import Loader from './components/Loader';
@@ -134,15 +133,6 @@ function SignUpUserPage() {
     <div className="SignUp">
     <Header />
     <SignUpUser />
-    </div>
-  );
-}
-
-function OptionsPage() {
-  return (  
-    <div className="Options">
-    <Header />
-    <Options />
     </div>
   );
 }

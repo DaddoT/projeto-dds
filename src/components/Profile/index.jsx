@@ -7,8 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Header from '../Header';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import List from '@material-ui/core/List';
 
 export default function ProfilePage(props){
   var history = useHistory();
@@ -22,7 +20,7 @@ export default function ProfilePage(props){
 
   };
 
-  const drawerWidth = 180;
+  const drawerWidth = 200;
 
   const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -57,8 +55,8 @@ export default function ProfilePage(props){
     </AppBar>
   <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
     <div className="ButtonsDash">
-      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Criar empresa</p></Link></Button>
-      <Button color="default" ><p className={classes.p}>Criar empresarial</p></Button> 
+      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
+      <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button> 
       <div className="ButtonsDeslog">     
       <Button color="default" onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button>
       </div>
