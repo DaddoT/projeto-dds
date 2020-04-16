@@ -69,24 +69,24 @@ return (
     <p>Insira seu email:</p>
     <TextField label="Email" variant="filled" type="email" fullWidth name="email" onChange={(event)=>
       onChangeHandler(event)}
-      /> <br></br><br></br>
+      /> <br /><br />
 
       <p>Insira sua senha:</p>
       <TextField label="Senha" variant="filled" type="password" fullWidth name="password" onChange={(event)=>
         onChangeHandler(event)}
-        /> <br></br><br></br>
+        /> <br /><br />
 
         <div id="buttons">
 
           <Button variant="contained" color="default" type="submit" fullWidth>
             Criar conta
-          </Button> <br></br> <br></br>
-          <p>Já possui uma conta?</p> <br></br> <br></br>
+          </Button> <br /> <br />
+          <p>Já possui uma conta?</p> <br /> <br />
           <Button variant="contained" color="default" fullWidth>
             <Link to="/home">
             Faça login </Link>
-          </Button> <br></br> <br></br>
-          <p>___________________________________</p> <br></br>
+          </Button> <br /> <br />
+          <p>___________________________________</p> <br />
         </div>
   </form>
 </div>

@@ -107,7 +107,7 @@ return (
   fullWidth
   name="nome"
   onChange = {(event) => onChangeHandler(event)} 
-  /> <br></br><br></br>
+  /> <br /><br />
 
   <p>Insira sua senha:</p>
   <TextField 
@@ -117,17 +117,17 @@ return (
   fullWidth
   name="password"
   onChange = {(event) => onChangeHandler(event)}
-  /> <br></br><br></br>
+  /> <br /><br />
 
   <div id="buttons">
 
   <Button variant="contained" color="default" type="submit" fullWidth> 
     Criar conta 
-  </Button> <br></br> <br></br>
-  <p>Já possui uma conta?</p>  <br></br> <br></br>
+  </Button> <br /> <br />
+  <p>Já possui uma conta?</p>  <br /> <br />
     <Button variant="contained" color="default" fullWidth> <Link to="/home"> 
       Faça login </Link>
-    </Button> <br></br> <br></br>
+    </Button> <br /> <br />
     <p>___________________________________</p>
   </div>
 </form>

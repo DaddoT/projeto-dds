@@ -43,7 +43,7 @@ export default function ProfilePage(props){
       <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
       </div>
       <div className="ButtonsDeslog">
-      <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br></br> <br></br> 
+      <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br /> <br /> 
       </div>
     </div>
 
