@@ -4,10 +4,13 @@ import { fb, database, auth } from '../firebase.js';
 import { Link, useHistory } from "react-router-dom";
 import './stylesProfile.css';
 import { makeStyles } from '@material-ui/core/styles';
+import Header from '../Header';
 
-export default function ProfilePage(){
+
+export default function ProfilePage(props){
   var history = useHistory();
 
+  console.log(props);
 
   const signOut = ()=>{
     auth.signOut().then(()=>{
@@ -27,27 +30,29 @@ export default function ProfilePage(){
     const classes = useStyles()
 
   return (
-<div className="Page">
-  <div className="Options">
 
-  <div className="ButtonsDash">
-    <Button color="default" ><p className={classes.p}>Registrar empresa</p></Button>
-    <div id="divider" />
-    <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
-    </div>
-      
-      <div className="ButtonsDeslog">
-    <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br></br> <br></br> 
+<div className="Profile">
+  <Header/>
+  <div className="Page">
+
+    <div className="Options">
+
+    <div className="ButtonsDash">
+      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
+      <div id="divider" />
+      <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button>
       </div>
+      <div className="ButtonsDeslog">
+      <Button color="default"  onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button> <br></br> <br></br> 
+      </div>
+    </div>
 
+    <div className="dashboard" >
+
+      <p>{props.user}</p>
+
+    </div>  
   </div>
-
-  <div className="dashboard" >
-
-    
-
-  </div>  
-
 </div>
   );
 }

@@ -16,13 +16,16 @@ import {
   Redirect
 } from "react-router-dom";
 import { render } from '@testing-library/react';
+import Empresa from './components/Empresa';
 
-function PrivateRoute ({component: Component, authed, ...rest}) {
+
+
+function PrivateRoute ({component: Component, authed, user, ...rest}) {
   return (
     <Route
       {...rest}
       render={(props) => authed === true
-        ? <Component {...props} />
+        ? <Component user={user} {...props} />
         : <Redirect to={{pathname: '/signup', state: {from: props.location}}} />}
     />
   )
@@ -45,7 +48,8 @@ export default class App extends Component {
 
   state = {
     auth: false,
-    loading: true
+    loading: true,
+    user: null
   }
 
   componentDidMount(){
@@ -54,6 +58,10 @@ export default class App extends Component {
         this.setState({
           auth: true,
           loading: false,
+          user: [
+            user.uid,
+            user.email,
+          ]
         })
       } else {
         this.setState({
@@ -82,7 +90,8 @@ export default class App extends Component {
           <Route path="/about">
             <AboutPage />
           </Route>
-          <PrivateRoute authed={this.state.auth} path='/profile' component={ProfilePage} />
+          <PrivateRoute authed={this.state.auth} user={this.state.user} path='/profile' component={Profile} />
+          <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresa' component={Empresa} />
           <Route path="/pricing">
             <PricingPage />
           </Route>
@@ -92,31 +101,6 @@ export default class App extends Component {
       </Router>);
   } 
 }
-
-
-// function AuthRoute({ children, ...rest }){
-  
-
-
-//   return (<Route
-//   {...rest}
-//   render={({ location }) =>{
-//     auth.onAuthStateChanged(function(user) {
-//       if (!user) {
-//         <Redirect
-//         to={{
-//           pathname: "/signin",
-//           state: { from: location }
-//         }}/>
-//         return;
-//       }
-//     });
-//   }}
-    
-
-// />)
-
-// }
 
 function HomePage() {
 return (
@@ -154,24 +138,6 @@ function SignUpUserPage() {
   );
 }
 
-// function SignUpEmpresaPage() {
-//   return (  
-//     <div className="SignUp">
-//     <Header />
-//     <SignUpEmpresa />
-//     </div>
-//   );
-// }
-
-// function SignUpEmpresarialPage() {
-//   return (  
-//     <div className="SignUp">
-//     <Header />
-//     <SignUpEmpresarial />
-//     </div>
-//   );
-// }
-
 function OptionsPage() {
   return (  
     <div className="Options">
@@ -181,11 +147,3 @@ function OptionsPage() {
   );
 }
 
-function ProfilePage() {
-  return (  
-    <div className="Profile">
-    <Header />
-    <Profile />
-    </div>
-  );
-}
