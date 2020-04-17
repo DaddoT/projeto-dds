@@ -56,7 +56,7 @@ export default function ProfilePage(props){
   <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
     <div className="ButtonsDash">
       <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
-      <Button color="default" ><p className={classes.p}>Registrar empresarial</p></Button> 
+      <Button color="default" ><Link to="/empresarial"><p className={classes.p}>Registrar empresarial</p></Link></Button> 
       <div className="ButtonsDeslog">     
       <Button color="default" onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button>
       </div>

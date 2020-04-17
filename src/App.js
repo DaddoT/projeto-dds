@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 // import { render } from '@testing-library/react'
 import Empresa from './components/Empresa';
+import Empresarial from './components/Empresarial';
 
 
 
@@ -91,6 +92,7 @@ export default class App extends Component {
           </Route>
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/profile' component={Profile} />
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresa' component={Empresa} />
+          <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresarial' component={Empresarial} />
           <Route path="/pricing">
             <PricingPage />
           </Route>
