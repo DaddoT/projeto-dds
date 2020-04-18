@@ -3,6 +3,10 @@ import { TextField, Button } from '@material-ui/core';
 import Header from '../Header';
 import cep from 'cep-promise'
 import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import List from '@material-ui/core/List';
+// import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
 form: {
@@ -20,6 +24,27 @@ backgroundColor: '#282828',
 width: '65%',
 height: '80vh',
 borderRadius: '15px 100px 15px',
+overflowY: 'scroll',
+},
+cards: {
+display: 'inline-block',    
+backgroundColor: '#white',
+height: '30vh',
+width: '95%',
+borderRadius: '15px 50px 15px',
+marginTop: '20px',
+marginBottom: '20px',
+marginLeft: '20px',
+},
+buttonCard: {
+display: 'inline',
+marginTop: '8%',
+marginLeft: '45%',
+width: '90%',
+},
+cardContent: {
+marginTop: '10%',
+marginLeft: '10%',
 },
 }));
 
@@ -93,7 +118,11 @@ export default function Empresa(props:any) {
             </div>
             {/* <style>borderRadius: '15px 100px 15px',</style> */}
             <div className={classes.empresas}>
-
+            <Card className={classes.cards}>
+            <CardContent className={classes.cardContent}>
+                <Button className={classes.buttonCard}>Solicitar acesso</Button>
+            </CardContent> 
+            </Card> 
             </div>
         </div>
     );
