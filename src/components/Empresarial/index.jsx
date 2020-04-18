@@ -4,6 +4,7 @@ import Header from '../Header';
 import cep from 'cep-promise'
 import {cnpj} from 'cpf-cnpj-validator';
 import { makeStyles } from '@material-ui/core/styles';
+import { fb, database, auth } from '../firebase.js';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -26,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Empresarial(props){
     
+    const COLLECTION_NAME = "empresariais";
+
+
     const classes = useStyles();
     console.log(props)
     
@@ -51,7 +55,10 @@ export default function Empresarial(props){
 
     const onSubmit = (event)=>{
         event.preventDefault();
-        
+
+        database.collection(COLLECTION_NAME).add({...state, uid: props.user[0]}).catch((e)=>{
+            console.log(e);
+        })
     }
 
     const consultaCEP = (event) => {
@@ -71,6 +78,22 @@ export default function Empresarial(props){
             })
         })
     }
+    
+    
+    //
+    const list_empresarial = ()=>{
+        let queryRef = database.collection(COLLECTION_NAME).where('uid', '==', props.user[0]);
+        queryRef.get().then((snapshot)=>{
+            snapshot.forEach(doc => {
+                _darw_row(doc.data());
+            });
+        })
+    }
+
+    const _darw_row = (row) =>{
+
+    }
+    //
 
     const _maskCEP = (val) => {
         return val
@@ -101,6 +124,7 @@ export default function Empresarial(props){
             [name]: value
         });
         console.log(state);
+        list_empresarial()
     }
 
 
@@ -130,7 +154,7 @@ export default function Empresarial(props){
                 </form>
             </div>
             {/* <style>borderRadius: '15px 100px 15px',</style> */}
-            <div className={classes.empresas}>
+            <div onLoad={(e)=>{list_empresarial()}} className={classes.empresas}>
 
             </div>
         </div>
