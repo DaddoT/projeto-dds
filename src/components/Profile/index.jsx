@@ -57,7 +57,7 @@ export default function ProfilePage(props){
     <div className="ButtonsDash">
       <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
       <Button color="default" ><Link to="/empresarial"><p className={classes.p}>Registrar empresarial</p></Link></Button> 
-      <div className="ButtonsDeslog">     
+      <div className="ButtonsDeslog">
       <Button color="default" onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button>
       </div>
     </div>

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     width: '65%',
     height: '80vh',
     borderRadius: '15px 80px 15px',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     },
     cards: {
     display: 'inline-block',    
@@ -60,8 +60,7 @@ export default function Empresarial(props){
     const classes = useStyles();
     console.log(props)
     
-
-    const [state, setState] = useState({
+    const defaultState = {
         nome: "",
         fantasia: "",
         cnpj: "",
@@ -72,30 +71,36 @@ export default function Empresarial(props){
         comp: "",
         estado:"",
         cidade:"",
-    });
+    }
+
+
+    const [state, setState] = useState(defaultState);
+    
     const [empresarial , setEmpresarial] = useState([])
 
 
     const [errorCnpj, setErrorCnpj] = useState({
         helperText: ""
     })
-    
+
+    const [editing, setEditing] = useState(null);
+
 
     const onSubmit = (event)=>{
         event.preventDefault();
-
-        database.collection(COLLECTION_NAME).add({...state, uid: props.user[0]}).catch((e)=>{
-            console.log(e);
-        })
+        if (editing !== null){
+            database.collection(COLLECTION_NAME).doc(editing).update(state).catch((e)=>{
+                console.log(e);
+            })
+        } else {
+            database.collection(COLLECTION_NAME).add({...state, uid: props.user[0]}).catch((e)=>{
+                console.log(e);
+            })
+        }
     }
 
     const consultaCEP = (event) => {
         const {name, value} = event.currentTarget;
-        console.log(name);
-        console.log(value);
-
-        //var self:Empresa = this;
-
         cep(value).then((e)=>{
             console.log(e); 
             setState({
@@ -111,14 +116,14 @@ export default function Empresarial(props){
     //
 
     useEffect(() => {
-        const unsubscribe = database.collection('empresariais')
+        const unsubscribe = database.collection(COLLECTION_NAME).where('uid', '==', props.user[0])
         .onSnapshot((query) => {
             let docs = [];
             query.forEach((doc) => {
-                const { fantasia } = doc.data();
+                const data  = doc.data();
                 docs.push({
-                    uid: doc.id,
-                    fantasia: fantasia,
+                    _key: doc.id,
+                    data: data,
                 })
             })
             setEmpresarial(docs)
@@ -126,26 +131,43 @@ export default function Empresarial(props){
         return unsubscribe;
     },[])
 
-    const list_empresarial = ()=>{
-        let queryRef = database.collection(COLLECTION_NAME).where('uid', '==', props.user[0]);
-        queryRef.get().then((snapshot)=>{
-            snapshot.forEach(doc => {
-                _draw_row(doc.data());
-                console.log(doc)
-            });
-        })
-    }
 
+
+    const editElem = (key) =>{
+        setEditing(key);
+        let enty = empresarial.filter((e)=> e._key == key);
+        setState(enty[0].data);
+    }
+    const deleteElem = (key) =>{
+        if (window.confirm("Você tem certeza que deseja deletar?")){
+            database.collection(COLLECTION_NAME).doc(key).delete().then(()=>{      
+                setEmpresarial(empresarial.filter((e)=> e._key !== key));
+                alert("Deletado com sucesso!")
+            }).catch(()=>{
+                alert("Erro ao deletar")
+            })
+        }
+    }
+    
+    
     const _draw_row = (row) =>{
-        console.log(row)
         return(
-        <List dense>
-        <Card className={classes.cards} variant="outlined">
+            <Card key={row._key} className={classes.cards}>
             <CardContent>
+            <div className={classes.cardContent}>
+            <p>{row.data.fantasia}</p>
                 
+            <div className={classes.buttonCard}> 
+                <IconButton onClick={()=>deleteElem(row._key)}>
+                    <DeleteIcon />
+                </IconButton>
+                <IconButton onClick={()=>editElem(row._key)}>
+                    <EditIcon />
+                </IconButton>   
+            </div>  
+            </div>           
             </CardContent> 
-        </Card> 
-        </List>
+            </Card> 
         );
     }
     //
@@ -179,7 +201,6 @@ export default function Empresarial(props){
             [name]: value
         });
         console.log(state);
-        list_empresarial()
     }
 
 
@@ -190,44 +211,28 @@ export default function Empresarial(props){
             <div className={classes.form}>
                 <form onSubmit={(e)=>onSubmit(e)}>
                     <p>Insira os dados do empresarial</p> <br />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="nome" label="Nome" size="small" id="standard-size-small"/> <div className={classes.divider}  />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="fantasia" label="Nome fantasia" size="small" id="standard-size-small"/> <br/>
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small"/> <div className={classes.divider}  />
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small"/> <br/>
                     <br/>
-                    <TextField required variant="outlined" name="cnpj" label="CNPJ" error={errorCnpj.helperText.length === 0 ? false: true} helperText={errorCnpj.helperText} onBlur={(e)=>_validateCNPJ(e)} onChange={(e)=>{e.target.value = cnpj.format(e.target.value); handleChange(e);}} size="small" id="standard-size-small"/>  <div className={classes.divider} />                 
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" type="email" name="email" label="E-mail" size="small" id="standard-size-small"/> <br/>
+                    <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false: true} helperText={errorCnpj.helperText} onBlur={(e)=>_validateCNPJ(e)} onChange={(e)=>{e.target.value = cnpj.format(e.target.value); handleChange(e);}} size="small" id="standard-size-small"/>  <div className={classes.divider} />                 
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small"/> <br/>
                     <br/>
                     <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e)=>{e.target.value = _maskCEP(e.target.value); handleChange(e)}} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
                     <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro"/><br/>
                     <br/>
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" name="numero" id="standard-size-small" label="Numero"/>  <div className={classes.divider} />                  
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" name="cidade" id="standard-size-small" label="Cidade"/> <br/>
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero"/>  <div className={classes.divider} />                  
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade"/> <br/>
                     <br/>
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" name="estado" id="standard-size-small" label="Estado"/> <div className={classes.divider} />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" name="comp" id="standard-size-small" label="Complemento"/>
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado"/> <div className={classes.divider} />
+                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento"/>
                     <br/> <br />
-                    <Button type="submit" variant="contained" color="default">Criar</Button> 
+                    <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
                 </form>
             </div>
             {/* <style>borderRadius: '15px 100px 15px',</style> 
             style={{ overflow-y: scroll }}*/}
-            <div onLoad={(e)=>{list_empresarial()}} className={classes.empresariais}>
-            <Card className={classes.cards}>
-            <CardContent>
-            <div className={classes.cardContent}>
-                <p>Nome da empresa</p>
-                
-            <div className={classes.buttonCard}> 
-                <IconButton >
-                    <DeleteIcon />
-                </IconButton>
-                <IconButton>
-                    <EditIcon />
-                </IconButton>   
-            </div>  
-            </div>           
-            </CardContent> 
-            </Card> 
-            
+            <div className={classes.empresariais}>
+                {empresarial.map((e)=>_draw_row(e))}
             </div>
         </div>
     );
