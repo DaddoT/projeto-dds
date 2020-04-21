@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     cards: {
     display: 'inline-block',    
     backgroundColor: '#white',
-    height: '7vh',
+    height: '10vh',
     width: '95%',
     borderRadius: '15px 30px 15px',
     marginTop: '20px',
@@ -43,12 +43,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20px',
     },
     cardContent: {
-    display: 'inline', 
-    // width: '90%',
+    display: 'inline-block', 
     },
     buttonCard: {
-    marginTop: '-30px',
-    marginLeft: '85%',
+    display: 'inline-block',    
+    marginLeft: '75%',
     },
     }));
 
@@ -154,9 +153,7 @@ export default function Empresarial(props){
         return(
             <Card key={row._key} className={classes.cards}>
             <CardContent>
-            <div className={classes.cardContent}>
-            <p>{row.data.fantasia}</p>
-                
+            <p className={classes.cardContent}>{row.data.fantasia}</p>   
             <div className={classes.buttonCard}> 
                 <IconButton onClick={()=>deleteElem(row._key)}>
                     <DeleteIcon />
@@ -164,8 +161,7 @@ export default function Empresarial(props){
                 <IconButton onClick={()=>editElem(row._key)}>
                     <EditIcon />
                 </IconButton>   
-            </div>  
-            </div>           
+            </div>            
             </CardContent> 
             </Card> 
         );
