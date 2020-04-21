@@ -9,6 +9,9 @@ import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -18,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '10px',
     height: 'auto',
     display: 'inline-block',
-    }, empresariais: {
+    },
+    empresariais: {
     position: 'absolute',
     top: '15vh',
     marginLeft: '32%',
@@ -31,22 +35,20 @@ const useStyles = makeStyles((theme) => ({
     cards: {
     display: 'inline-block',    
     backgroundColor: '#white',
-    height: '30vh',
-    width: '25%',
-    borderRadius: '15px 50px 15px',
+    height: '7vh',
+    width: '95%',
+    borderRadius: '15px 30px 15px',
     marginTop: '20px',
     marginBottom: '20px',
     marginLeft: '20px',
     },
-    buttonCard: {
-    display: 'inline',
-    marginTop: '72%',
-    marginLeft: '18%',
-    width: '90%',
-    },
     cardContent: {
-    marginTop: '10%',
-    marginLeft: '10%',
+    display: 'inline', 
+    // width: '90%',
+    },
+    buttonCard: {
+    marginTop: '-30px',
+    marginLeft: '85%',
     },
     }));
 
@@ -210,10 +212,22 @@ export default function Empresarial(props){
             style={{ overflow-y: scroll }}*/}
             <div onLoad={(e)=>{list_empresarial()}} className={classes.empresariais}>
             <Card className={classes.cards}>
-            <CardContent className={classes.cardContent}>
-                <Button className={classes.buttonCard}>Solicitar acesso</Button>
+            <CardContent>
+            <div className={classes.cardContent}>
+                <p>Nome da empresa</p>
+                
+            <div className={classes.buttonCard}> 
+                <IconButton >
+                    <DeleteIcon />
+                </IconButton>
+                <IconButton>
+                    <EditIcon />
+                </IconButton>   
+            </div>  
+            </div>           
             </CardContent> 
             </Card> 
+            
             </div>
         </div>
     );
