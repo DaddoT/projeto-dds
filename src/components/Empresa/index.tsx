@@ -30,7 +30,11 @@ cards: {
 display: 'inline-block',    
 backgroundColor: '#white',
 height: '30vh',
+<<<<<<< HEAD
 width: '95%',
+=======
+width: '25%',
+>>>>>>> c1456e98f1366eecd9d90754980d0256eee94211
 borderRadius: '15px 50px 15px',
 marginTop: '20px',
 marginBottom: '20px',
@@ -38,8 +42,13 @@ marginLeft: '20px',
 },
 buttonCard: {
 display: 'inline',
+<<<<<<< HEAD
 marginTop: '8%',
 marginLeft: '45%',
+=======
+marginTop: '72%',
+marginLeft: '18%',
+>>>>>>> c1456e98f1366eecd9d90754980d0256eee94211
 width: '90%',
 },
 cardContent: {
