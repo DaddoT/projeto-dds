@@ -10,9 +10,16 @@ header#main-header {
     justify-content: left;
     align-items: left;
 }
-p2 {
-    font-family: monospace;
-    color: white;
+
+.logo-img {
+    height: 60px;
+    margin-top: -6px ;
+}
+
+.bar {
+
+    background: #282828;
+
 }
 
 #inputs {
@@ -34,3 +41,6 @@ img {
    margin-top: 3px;
 }
 
+.login {
+
+}

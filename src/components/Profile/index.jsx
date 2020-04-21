@@ -15,7 +15,7 @@ export default function ProfilePage(props){
 
   const signOut = ()=>{
     auth.signOut().then(()=>{
-      history.push("home");
+      history.push("signin");
     }).catch();
 
   };
@@ -51,7 +51,7 @@ export default function ProfilePage(props){
 
 <div className="Page">
     <AppBar position="fixed" className={classes.appBar}>
-        <Header />
+        <Header {...props}/>
     </AppBar>
   <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
     <div className="ButtonsDash">

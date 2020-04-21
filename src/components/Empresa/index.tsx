@@ -95,7 +95,7 @@ export default function Empresa(props:any) {
 
     return(
         <div className="Empresa">
-            <Header/>
+            <Header {...props}/>
             <div className={classes.form}>
                 <form onSubmit={(e)=>onSubmit(e)}>
                     <p>Insira os dados da empresa</p> <br />

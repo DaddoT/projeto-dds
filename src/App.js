@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Inputs from './components/InputsLogin';
+import SignIn from './components/SignIn';
 import SignUpUser from './components/SignUpUser';
 import Profile from './components/Profile';
 import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
 import Loader from './components/Loader';
+
+import RecoveryPassword from './components/RecoveryPassword';
 import { fb, database, auth } from './components/firebase.js';
 import "./styles.css";
 import {
@@ -17,6 +19,7 @@ import {
 // import { render } from '@testing-library/react'
 import Empresa from './components/Empresa';
 import Empresarial from './components/Empresarial';
+import Index from './components/Index';
 
 
 
@@ -31,7 +34,7 @@ function PrivateRoute ({component: Component, authed, user, ...rest}) {
   )
 }
 
-function PublicRoute ({component: Component, authed, ...rest}) {
+function UnAuthRoute ({component: Component, authed, ...rest}) {
   return (
     <Route
       {...rest}
@@ -41,6 +44,18 @@ function PublicRoute ({component: Component, authed, ...rest}) {
     />
   )
 }
+
+function PublicRoute ({component: Component, user, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props)=><Component user={user} {...props} />}
+
+    />
+  )
+}
+
+
 
 
 
@@ -87,55 +102,26 @@ export default class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/about">
-            <AboutPage />
-          </Route>
+
+          <PublicRoute user={this.state.user} path='/about' component={AboutText} />
+          <PublicRoute user={this.state.user} exact={true} path="/"  component={Index}/>
+          <PublicRoute user={this.state.user} path='/pricing' component={PricingCard} />
+
+
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/profile' component={Profile} />
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresa' component={Empresa} />
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresarial' component={Empresarial} />
-          <Route path="/pricing">
-            <PricingPage />
-          </Route>
-          <PublicRoute authed={this.state.auth} path="/home" component={HomePage}/>
-          <PublicRoute authed={this.state.auth} path="/signup" component={SignUpUserPage}/>
+
+
+          <UnAuthRoute authed={this.state.auth} path="/signin" component={SignIn}/>
+          <UnAuthRoute authed={this.state.auth} path="/signup" component={SignUpUser}/>
+          <UnAuthRoute authed={this.state.auth} path="/recovery" component={RecoveryPassword}/>
+          
+
         </Switch>
       </Router>);
   } 
 }
 
-function HomePage() {
-return (
-<div className="Home">
-  <Header />
-  <Inputs />
-  </div>
-);
-}
 
-function AboutPage() {
-return (
-  <div className="About">
-  <Header />
-  <AboutText />
-  </div>
-);
-}
-
-function PricingPage() {
-return (
-  <div className="Pricing">
-  <Header />
-  <PricingCard />
-  </div>
-);
-}
-
-function SignUpUserPage() {
-  return (  
-    <div className="SignUp">
-    <Header />
-    <SignUpUser />
-    </div>
-  );
-}
 

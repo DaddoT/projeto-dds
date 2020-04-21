@@ -5,9 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 import "./stylesLogin.css";
 import { fb, database, auth } from '../firebase.js';
 import { makeStyles } from '@material-ui/core/styles';
+import Header from "../Header";
 
 
-export default function Inputs() {
+export default function SignIn(props) {
 var history = useHistory();
 
 
@@ -84,6 +85,9 @@ setPassword(value);
 };
 
 return (
+  <div>
+    <Header {...props}/>
+
 <div id="inputs">
   <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
     <p>Insira seu email:</p> <br/>
@@ -103,7 +107,7 @@ return (
         <Button variant="contained" onClick={()=>signUpGoogle()} color="default">
           Sign-in com Google
         </Button> <br /> <br />
-        <a href="a.com">Esqueci minha senha</a> <br /> <br />
+        <Link to="/recovery">Esqueci minha senha</Link> <br /> <br />
 
         <p>Ainda não possui uma conta?</p> <br /> <br />
         <Button variant="contained" color="default">
@@ -114,6 +118,7 @@ return (
 
 
   </form>
+</div>
 </div>
 );
 }

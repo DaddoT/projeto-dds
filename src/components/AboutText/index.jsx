@@ -2,8 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import './styles.css';
+import Header from '../Header';
 
-export default function AboutText() {
+export default function AboutText(props) {
 
 
   const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,7 @@ export default function AboutText() {
 
     return(
         <div>
+          <Header {...props}/>
         <h1>Lorem ipsum dolor sit amet </h1> 
 
           <div className="dashboardAbout" >

@@ -203,7 +203,7 @@ export default function Empresarial(props){
 
     return(
         <div className="Empresarial">
-            <Header/>
+            <Header {...props}/>
             <div className={classes.form}>
                 <form onSubmit={(e)=>onSubmit(e)}>
                     <p>Insira os dados do empresarial</p> <br />

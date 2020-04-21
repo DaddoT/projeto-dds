@@ -5,8 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory } from "react-router-dom";
 import { database, auth, } from '../firebase.js';
 import './stylesSignUpUser.css';
+import Header from '../Header';
 
-const SignUp = () => {
+const SignUp = (props) => {
 
   const history = useHistory();
 
@@ -60,8 +61,14 @@ setPassword(value);
 };
 
 
+const recovery_password = () =>{
+  auth.sendPasswordResetEmail()
+} 
+
 
 return (
+  <div >
+        <Header {...props}/>
 <div id="input">
   <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
     {/* onSubmit={onChangeHandler} onSubmit={createUserWithEmailAndPasswordHandler}*/}
@@ -73,7 +80,8 @@ return (
       <p>Insira sua senha:</p> <br/>
       <TextField label="Senha" variant="outlined" type="password" fullWidth name="password" onChange={(event)=>
         onChangeHandler(event)}
-        /> <br /><br />
+        /> 
+        <br /><br />
 
         <div id="buttons">
 
@@ -88,6 +96,7 @@ return (
           <p>___________________________________</p> <br />
         </div>
   </form>
+</div>
 </div>
 
 );

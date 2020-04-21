@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Header from '../Header';
 
 
 const useStyles = makeStyles({
@@ -24,10 +25,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function SimpleCard(props) {
   const classes = useStyles();
   
   return (
+    <div><Header {...props}/>
   <div className={classes.cards}>        
 <Card className={classes.card}>
     <CardContent>
@@ -52,6 +54,7 @@ export default function SimpleCard() {
 
     </CardContent>
 </Card>
+</div>
 </div>
   );
 }
