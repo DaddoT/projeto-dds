@@ -4,10 +4,8 @@ import Header from '../Header';
 import cep from 'cep-promise'
 import {cnpj} from 'cpf-cnpj-validator';
 import { makeStyles } from '@material-ui/core/styles';
-import { fb, database, auth } from '../firebase.js';
+import { database } from '../firebase.js';
 import Card from '@material-ui/core/Card';
-import List from '@material-ui/core/List';
-// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -99,11 +97,11 @@ export default function Empresarial(props){
     }
 
     const consultaCEP = (event) => {
-        const {name, value} = event.currentTarget;
+        const {value} = event.currentTarget;
         cep(value).then((e)=>{
             console.log(e); 
             setState({
-                ... state,
+                ...state,
                 rua: e.street,
                 estado: e.state,
                 cidade: e.city
@@ -134,7 +132,7 @@ export default function Empresarial(props){
 
     const editElem = (key) =>{
         setEditing(key);
-        let enty = empresarial.filter((e)=> e._key == key);
+        let enty = empresarial.filter((e)=> e._key === key);
         setState(enty[0].data);
     }
     const deleteElem = (key) =>{
