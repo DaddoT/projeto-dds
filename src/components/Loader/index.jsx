@@ -5,8 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   loader: {
-    marginTop: '75px',
-   marginLeft: '450px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: '15vh' 
   },
   }));
 

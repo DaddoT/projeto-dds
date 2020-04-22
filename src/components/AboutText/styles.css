@@ -4,7 +4,7 @@
     font-family: monospace;
     color: #fff;
     position: absolute;
-    top: 18vh;
+    top: 15vh;
     margin-left: 80px;
     background-color: #282828; 
     width: 90%;
@@ -14,11 +14,13 @@
 } 
 
 .box-1 {
+    text-align: justify;
     padding-left: 10%;
     padding-right: 60%;
+    
 }
 .box-2 {
-    
+    text-align: justify;
     padding-left: 40%;
     padding-right: 10%;
 }
@@ -26,6 +28,7 @@
     text-align: center;
 }
 .box-3 {
+    text-align: justify;
     align-items: center;
     padding-left: 25%;
     padding-right: 25%;
