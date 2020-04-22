@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Link, useHistory } from "react-router-dom";
-import "./stylesLogin.css";
 import { fb, database, auth } from '../firebase.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "../Header";
@@ -10,7 +9,6 @@ import Header from "../Header";
 
 export default function SignIn(props) {
 var history = useHistory();
-
 
 const useStyles = makeStyles((theme) => ({
 root: {
@@ -20,7 +18,23 @@ flexWrap: 'wrap',
 textField: {
 marginLeft: theme.spacing(1),
 marginRight: theme.spacing(1),
+marginTo: theme.spacing(1),
 width: '35ch',
+},
+inputs: {
+  display: 'flex',
+  marginTop: '2.5%',
+  marginLeft: '20px',
+},
+divider: {
+  width: '10px',
+  height: 'auto',
+  display: 'inline-block',
+},
+links: {
+  fontFamily: 'Arial, Helvetica, sans-serif',
+  textDecoration: 'none',
+  color: 'rgb(39, 39, 39)',
 },
 }));
 
@@ -31,7 +45,7 @@ console.log(provider);
 fb.auth().signInWithPopup(provider).then(function(result) {
   //
 }).catch((error)=>{
-//mstrar os errors
+//mostrar os errors
 console.log(error);
 });
 
@@ -88,18 +102,17 @@ return (
   <div>
     <Header {...props}/>
 
-<div id="inputs">
+<div className={classes.inputs}>
   <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
-    <p>Insira seu email:</p> <br/>
+    <p2 className={classes.links}> Insira seu email:</p2> <br /> <br />
     <TextField label="Email" variant="outlined" type="email" fullWidth name="userEmail" value={email} id="userEmail"
-      onChange={(event)=> onChangeHandler(event)}
-      /> <br /><br />
+      onChange={(event)=> onChangeHandler(event)} 
+      /> <br /> <br />
 
-      <p>Insira sua senha:</p> <br/>
+      <p2 className={classes.links}>Insira sua senha:</p2> <br /> <br />
       <TextField label="Senha" variant="outlined" type="password" fullWidth name="userPassword" value={password}
         id="userPassword" onChange={(event)=> onChangeHandler(event)}
         /> <br /><br />
-
 
         <Button variant="contained" color="default" type="submit">
           Log in
@@ -107,16 +120,13 @@ return (
         <Button variant="contained" onClick={()=>signUpGoogle()} color="default">
           Sign-in com Google
         </Button> <br /> <br />
-        <Link to="/recovery">Esqueci minha senha</Link> <br /> <br />
+        <Link to="/recovery" className={classes.links}>Esqueci minha senha</Link> <br /> <br />
 
-        <p>Ainda não possui uma conta?</p> <br /> <br />
+        <p2 className={classes.links}>Ainda não possui uma conta?</p2> <br /> <br />
         <Button variant="contained" color="default">
-          <Link to="/signup">
-          Registre-se </Link>
+          <Link to="/signup" className={classes.links}>
+          SignUp </Link>
         </Button> <br />
-
-
-
   </form>
 </div>
 </div>
