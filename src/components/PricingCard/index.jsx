@@ -43,7 +43,7 @@ export default function SimpleCard(props) {
   const rows = [
     createData('Empresarial', 'R$ 0', 'R$ 0', 'R$ 0'),
     createData('Empresa', 'R$ 0', 'R$ 0', 'R$ 0'),
-    createData('Usuário', 'R$ 0', 'R$ 0', 'R$ 0'),
+    createData('Funcionário', 'R$ 0', 'R$ 0', 'R$ 0'),
   ];
 
   return (
