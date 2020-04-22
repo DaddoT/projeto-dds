@@ -1,18 +1,40 @@
-h1 {
-    font-family: unset;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-}
 
 .dashboardAbout {
+    font-size: 15px;
+    font-family: monospace;
+    color: #fff;
     position: absolute;
     top: 18vh;
     margin-left: 80px;
     background-color: #282828; 
     width: 90%;
-    height: 80vh;
+
     border-radius: 15px 100px 15px;
+    padding: 30px;
 } 
+
+.box-1 {
+    padding-left: 10%;
+    padding-right: 60%;
+}
+.box-2 {
+    
+    padding-left: 40%;
+    padding-right: 10%;
+}
+.box-3 h1 {
+    text-align: center;
+}
+.box-3 {
+    align-items: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.hr {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 15%;
+    width: 70%;
+    border: solid 3px #71DB77;
+}
