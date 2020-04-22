@@ -25,12 +25,13 @@ export default function AboutText(props) {
               <hr className="hr"/>
               <div className="box-3">
                 <h1>Quem Somos:</h1>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum convallis rhoncus. Vivamus cursus ligula a erat dictum eleifend. 
-                Sed at erat eget leo pulvinar cursus in et ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Aliquam congue ante id bibendum semper. In sagittis ut quam ut rutrum. Sed ac finibus urna, eu luctus purus. 
-                Nullam blandit magna sit amet porttitor vulputate. Nullam urna erat, finibus ac tempor auctor, posuere nec magna. 
-                Fusce euismod ante venenatis leo consequat sagittis. Donec eu ligula sapien. Mauris tristique felis vel sem condimentum rhoncus. 
-                Cras id tortor dictum, feugiat leo at, ullamcorper magna.
+                A equipe GateKey consiste em 6 integrantes, todos alunos da UniFBV desenvolvendo a iniciativa de "projetão", sendo eles: <br />
+                * Arthur Lins <br />
+                * Daddo Cavalcanti <br />
+                * Douglas José <br />
+                * Jamerson Souza <br />
+                * João Felipe <br />
+                * João Felipe
               </div>
           </div>  
         </div>
