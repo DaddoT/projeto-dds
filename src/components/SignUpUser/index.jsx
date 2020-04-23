@@ -21,6 +21,11 @@ const SignUp = (props) => {
     marginRight: theme.spacing(1),
     width: '35ch',
     },
+    button: {
+      fontFamily: 'Arial, Helvetica, sans-serif',
+      textDecoration: 'none',
+      color: 'rgb(39, 39, 39)',
+    },
     }));
     
   const classes = useStyles();
@@ -72,12 +77,12 @@ return (
 <div id="input">
   <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
     {/* onSubmit={onChangeHandler} onSubmit={createUserWithEmailAndPasswordHandler}*/}
-    <p>Insira seu email:</p> <br/>
+    <p>Insira seu email:</p>
     <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
       onChangeHandler(event)}
       /> <br /><br />
 
-      <p>Insira sua senha:</p> <br/>
+      <p>Insira sua senha:</p>
       <TextField label="Senha" variant="outlined" type="password" fullWidth name="password" onChange={(event)=>
         onChangeHandler(event)}
         /> 
@@ -88,12 +93,11 @@ return (
           <Button variant="contained" color="default" type="submit" fullWidth>
             Criar conta
           </Button> <br /> <br />
-          <p>Já possui uma conta?</p> <br /> <br />
-          <Button variant="contained" color="default" fullWidth>
-            <Link to="/home">
+          <p>Já possui uma conta?</p>
+          <Button variant="contained" color="default" fullWidth >
+            <Link to="/home" className={classes.button}>
             Faça login </Link>
-          </Button> <br /> <br />
-          <p>___________________________________</p> <br />
+          </Button>
         </div>
   </form>
 </div>

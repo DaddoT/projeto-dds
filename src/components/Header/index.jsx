@@ -18,25 +18,20 @@ import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   space: {
     flexGrow: 1,
   },
-
   button: {
     fontFamily: "monospace",
     color: "white",
     fontWeight: "normal",
-    fontSize: "15px"
-  }
-
-
+    fontSize: "15px",
+    textDecoration: "none",
+  },
+  profile: {
+    color: 'black',
+    textDecoration: "none",
+  },
 }));
 
   export default function Header(props) {
@@ -66,10 +61,10 @@ const useStyles = makeStyles((theme) => ({
           
           <img src={logo} className="logo-img" alt="logo"/>
 
-          <Link to="/"><Button className={classes.button} color="inherit">Home</Button></Link>
-          <Link to="/about"><Button className={classes.button} color="inherit">About</Button></Link>
-          <Link to="/pricing"><Button className={classes.button} color="inherit">Pricing</Button></Link>
-
+          <Link to="/"       className={classes.button}><Button color="inherit">Home</Button></Link>
+          <Link to="/about"  className={classes.button}><Button color="inherit">About</Button></Link>
+          <Link to="/pricing"className={classes.button}><Button  color="inherit">Pricing</Button></Link>
+        
           {/* kkkk */}
           <div className={classes.space}></div>
 
@@ -99,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
                 open={open}
                 onClose={handleClose}
               >
-                <Link to="/profile"><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+                <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
               </Menu>
             </div>
           ): (

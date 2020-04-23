@@ -35,6 +35,16 @@ export default function ProfilePage(props){
       color: 'white',
       fontSize: '12px',
       marginLeft: '10px',
+      textDecoration: 'none',
+    },
+    deslog: {
+    fontFamily: 'monospace',
+    color: 'white',
+    fontSize: '12px',
+    marginLeft: '10px',
+    textDecoration: 'none',  
+    marginLeft: '45px', 
+    marginTop: '65vh',
     },
     log: {
       fontFamily: 'monospace',
@@ -55,11 +65,11 @@ export default function ProfilePage(props){
     </AppBar>
   <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
     <div className="ButtonsDash">
-      <Button color="default" ><Link to="/empresa"><p className={classes.p}>Registrar empresa</p></Link></Button>
-      <Button color="default" ><Link to="/empresarial"><p className={classes.p}>Registrar empresarial</p></Link></Button> 
-      <div className="ButtonsDeslog">
-      <Button color="default" onClick={()=>signOut()}><p className={classes.p}>Deslogar</p></Button>
-      </div>
+      <Button color="default" ><Link to="/empresa" className={classes.p}>Registrar empresa</Link></Button>
+      <Button color="default" ><Link to="/empresarial" className={classes.p}> Registrar empresarial</Link></Button> 
+      {/* <div className={classes.deslog}> */}
+      <Button color="default" onClick={()=>signOut()} className={classes.deslog}>Deslogar</Button>
+      {/* </div> */}
     </div>
   </Drawer>
 
