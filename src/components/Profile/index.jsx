@@ -108,7 +108,7 @@ export default function ProfilePage(props){
       email: "",
     }
 
-    const [state, setState] = useState({});
+    const [state, setState] = useState(tpl);
     const [acessos, setAcessos] = useState([]);
     const [editing, setEditing] = useState(null);
 
@@ -156,6 +156,8 @@ export default function ProfilePage(props){
             console.log(e);
         })
     } else {
+
+        console.log(props.user[0])
         database.collection("acessos").add({...state, uid: props.user[0]}).then((e)=>{
           setState(tpl);
         }).catch((e)=>{
@@ -203,14 +205,14 @@ export default function ProfilePage(props){
      <div className={classes.container}>  
       <form className={classes.form} onSubmit={(e)=>submit(e)}>
       <h1>Acessos de usuário</h1> <br />
-        <TextField onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
+        <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
         {/* <Select native variant="outlined" size="small"name="empresaMae" required  >
                     <option aria-label="None" value="">Selecione uma empresa</option>
                     </Select> <br/> */}
         <br/> 
         <div className={classes.horarios}>
-        <TextField onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
-        <TextField onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída"   type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
+        <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
+        <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída"   type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
         </div> <br />
                   <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button> 
       </form>
