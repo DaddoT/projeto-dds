@@ -13,13 +13,13 @@ const SignUp = (props) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+      display: 'flex',
+      flexWrap: 'wrap',
     },
     textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '35ch',
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '35ch',
     },
     button: {
       fontFamily: 'Arial, Helvetica, sans-serif',
@@ -54,42 +54,42 @@ const addUser = (obj) => {
 const onChangeHandler = event => {
 const { name, value } = event.currentTarget;
 if (name === "email") {
-setEmail(value);
+  setEmail(value);
 } else if (name === "password") {
-setPassword(value);
+  setPassword(value);
 }
 };
 
 return (
   <div >
         <Header {...props}/>
-<div id="input">
-  <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
-    <p>Insira seu email:</p>
-    <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
-      onChangeHandler(event)}
-      /> <br /><br />
+    <div id="input">
+      <form className={classes.textField} noValidate autoComplete="off" onSubmit={createUserWithEmailAndPasswordHandler}>
+        <p>Insira seu email:</p>
+        <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
+          onChangeHandler(event)}
+          /> <br /><br />
 
-      <p>Insira sua senha:</p>
-      <TextField label="Senha" variant="outlined" type="password" fullWidth name="password" onChange={(event)=>
-        onChangeHandler(event)}
-        /> 
-        <br /><br />
+          <p>Insira sua senha:</p>
+          <TextField label="Senha" variant="outlined" type="password" fullWidth name="password" onChange={(event)=>
+            onChangeHandler(event)}
+            /> 
+            <br /><br />
 
-        <div id="buttons">
+            <div id="buttons">
 
-          <Button variant="contained" color="default" type="submit" fullWidth>
-            Criar conta
-          </Button> <br /> <br />
-          <p>Já possui uma conta?</p>
-          <Button variant="contained" color="default" fullWidth >
-            <Link to="/home" className={classes.button}>
-            Faça login </Link>
-          </Button>
-        </div>
-  </form>
-</div>
-</div>
+              <Button variant="contained" color="default" type="submit" fullWidth>
+                Criar conta
+              </Button> <br /> <br />
+              <p>Já possui uma conta?</p>
+              <Button variant="contained" color="default" fullWidth >
+                <Link to="/home" className={classes.button}>
+                Faça login </Link>
+              </Button>
+            </div>
+      </form>
+    </div>
+  </div>
 
 );
 

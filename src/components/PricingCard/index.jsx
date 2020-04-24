@@ -48,41 +48,41 @@ export default function SimpleCard(props) {
 
   return (
     <div><Header {...props}/>
-  <div className={classes.cards}>  
-  <div className={classes.divider} />
-<Card className={classes.card}>
-    <CardContent>
-      <div>
-        <h2>Tabela de Preços</h2>  
-      <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Tipo de Usuário</TableCell>
-            <TableCell align="right"> 1 ano</TableCell>
-            <TableCell align="right"> 2 anos</TableCell>
-            <TableCell align="right"> 5 anos</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.short}</TableCell>
-              <TableCell align="right">{row.medium}</TableCell>
-              <TableCell align="right">{row.long}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-      </div>
+    <div className={classes.cards}>  
+      <div className={classes.divider} />
+      <Card className={classes.card}>
+        <CardContent>
+          <div>
+            <h2>Tabela de Preços</h2>  
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Tipo de Usuário</TableCell>
+                  <TableCell align="right"> 1 ano</TableCell>
+                  <TableCell align="right"> 2 anos</TableCell>
+                  <TableCell align="right"> 5 anos</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">{row.short}</TableCell>
+                    <TableCell align="right">{row.medium}</TableCell>
+                    <TableCell align="right">{row.long}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          </div>
 
-    </CardContent>
-</Card>
-</div>
-</div>
+        </CardContent>
+      </Card>
+    </div>
+    </div>
   );
 }

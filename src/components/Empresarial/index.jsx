@@ -13,39 +13,40 @@ import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
     form: {
-    marginLeft: '30px',
-    marginTop: '80px',
-    }, divider: {
-    minWidth: '10px',
-    height: 'auto',
-    display: 'inline-block',
+        marginLeft: '30px',
+        marginTop: '80px',
+    },
+    divider: {
+        minWidth: '10px',
+        height: 'auto',
+        display: 'inline-block',
     },
     empresariais: {
-    position: 'absolute',
-    top: '15vh',
-    marginLeft: '32%',
-    backgroundColor: '#282828', 
-    width: '65%',
-    height: '80vh',
-    borderRadius: '15px 80px 15px',
-    overflowY: 'auto',
+        position: 'absolute',
+        top: '15vh',
+        marginLeft: '32%',
+        backgroundColor: '#282828', 
+        width: '65%',
+        height: '80vh',
+        borderRadius: '15px 80px 15px',
+        overflowY: 'auto',
     },
     cards: {
-    display: 'inline-block',    
-    backgroundColor: '#white',
-    height: '10vh',
-    width: '95%',
-    borderRadius: '15px 30px 15px',
-    marginTop: '20px',
-    marginBottom: '20px',
-    marginLeft: '20px',
+        display: 'inline-block',    
+        backgroundColor: '#white',
+        height: '10vh',
+        width: '95%',
+        borderRadius: '15px 30px 15px',
+        marginTop: '20px',
+        marginBottom: '20px',
+        marginLeft: '20px',
     },
     cardContent: {
-    display: 'inline-block', 
+        display: 'inline-block', 
     },
     buttonCard: {
-    display: 'inline-block',    
-    marginLeft: '75%',
+        display: 'inline-block',    
+        marginLeft: '75%',
     },
     }));
 
@@ -150,17 +151,17 @@ export default function Empresarial(props){
     const _draw_row = (row) =>{
         return(
             <Card key={row._key} className={classes.cards}>
-            <CardContent>
-            <p className={classes.cardContent}>{row.data.fantasia}</p>   
-            <div className={classes.buttonCard}> 
-                <IconButton onClick={()=>deleteElem(row._key)}>
-                    <DeleteIcon />
-                </IconButton>
-                <IconButton onClick={()=>editElem(row._key)}>
-                    <EditIcon />
-                </IconButton>   
-            </div>            
-            </CardContent> 
+                <CardContent>
+                    <p className={classes.cardContent}>{row.data.fantasia}</p>   
+                    <div className={classes.buttonCard}> 
+                        <IconButton onClick={()=>deleteElem(row._key)}>
+                            <DeleteIcon />
+                        </IconButton>
+                        <IconButton onClick={()=>editElem(row._key)}>
+                            <EditIcon />
+                        </IconButton>   
+                    </div>            
+                </CardContent> 
             </Card> 
         );
     }

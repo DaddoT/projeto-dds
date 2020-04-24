@@ -50,12 +50,12 @@ export default function ProfilePage(props){
       textDecoration: 'none',
     },
     deslog: {
-    fontFamily: 'monospace',
-    color: 'white',
-    fontSize: '12px',
-    textDecoration: 'none',  
-    marginLeft: '45px', 
-    marginTop: '65vh',
+      fontFamily: 'monospace',
+      color: 'white',
+      fontSize: '12px',
+      textDecoration: 'none',  
+      marginLeft: '45px', 
+      marginTop: '65vh',
     },
     log: {
       fontFamily: 'monospace',
@@ -82,15 +82,15 @@ export default function ProfilePage(props){
       width: '25vh',
     },
     container: {
-    position: 'absolute',
-    top: '5vh',
-    marginLeft: '20px',
-    backgroundColor: 'white',
-    width: '40%',
-    height: '45vh',
-    borderRadius: '15px 50px 15px',
-    fontFamily: 'monospace',
-    fontSize: '15px',
+      position: 'absolute',
+      top: '5vh',
+      marginLeft: '20px',
+      backgroundColor: 'white',
+      width: '40%',
+      height: '45vh',
+      borderRadius: '15px 50px 15px',
+      fontFamily: 'monospace',
+      fontSize: '15px',
     },
   }));
 
@@ -173,68 +173,68 @@ export default function ProfilePage(props){
 
   return (
 
-<div className="Page">
-    <AppBar position="fixed" className={classes.appBar}>
-        <Header {...props}/>
-    </AppBar>
-  <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
-    <div className="ButtonsDash">
-      <Button color="default" ><Link to="/empresa" className={classes.p}>Registrar empresa</Link></Button>
-      <Button color="default" ><Link to="/empresarial" className={classes.p}> Registrar empresarial</Link></Button> 
-      <Button color="default" onClick={()=>signOut()} className={classes.deslog}>Deslogar</Button>
-    </div>
-  </Drawer>
+    <div className="Page">
+        <AppBar position="fixed" className={classes.appBar}>
+            <Header {...props}/>
+        </AppBar>
+      <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper, }} >
+        <div className="ButtonsDash">
+          <Button color="default" ><Link to="/empresa" className={classes.p}>Registrar empresa</Link></Button>
+          <Button color="default" ><Link to="/empresarial" className={classes.p}> Registrar empresarial</Link></Button> 
+          <Button color="default" onClick={()=>signOut()} className={classes.deslog}>Deslogar</Button>
+        </div>
+      </Drawer>
 
-     <div className="dashboard" >
-     <div className={classes.container}>  
-      <form className={classes.form} onSubmit={(e)=>submit(e)}>
-      <h1>Acessos de usuário</h1> <br />
-        <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
-        <br/> 
-        <div className={classes.horarios}>
-        <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
-        <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída"   type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
-        </div> <br />
-                  <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button> 
-      </form>
+        <div className="dashboard" >
+          <div className={classes.container}>  
+            <form className={classes.form} onSubmit={(e)=>submit(e)}>
+            <h1>Acessos de usuário</h1> <br />
+              <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
+              <br/> 
+              <div className={classes.horarios}>
+              <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
+              <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída"   type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
+              </div> <br />
+                        <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button> 
+            </form>
+          </div>
+          <Card className={classes.table}>
+            <CardContent>
+              <TableContainer>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>E-mail</TableCell>
+                      <TableCell> Horario Entrada</TableCell>
+                      <TableCell> Horario Saida</TableCell>
+                      <TableCell align="right"> Ações</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                  {acessos.map((el)=>{
+                    return (
+                      <TableRow key={el._key}>
+                      <TableCell>{el.data.email}</TableCell>
+                      <TableCell>{el.data.horac}</TableCell>
+                      <TableCell>{el.data.horas}</TableCell>
+                      <TableCell align="right">
+                        <IconButton onClick={(e)=>deleteElem(el._key)} align="right">   
+                          <DeleteIcon />
+                        </IconButton>
+                        <IconButton onClick={(e)=>editElem(el._key)} align="right">
+                          <EditIcon />
+                        </IconButton>
+                      </TableCell>
+                      </TableRow>
+                    )
+                  })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    <Card className={classes.table}>
-    <CardContent>
-      <TableContainer>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>E-mail</TableCell>
-            <TableCell> Horario Entrada</TableCell>
-            <TableCell> Horario Saida</TableCell>
-            <TableCell align="right"> Ações</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {acessos.map((el)=>{
-          return (
-          <TableRow key={el._key}>
-          <TableCell>{el.data.email}</TableCell>
-          <TableCell>{el.data.horac}</TableCell>
-          <TableCell>{el.data.horas}</TableCell>
-          <TableCell align="right">
-            <IconButton onClick={(e)=>deleteElem(el._key)} align="right">   
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={(e)=>editElem(el._key)} align="right">
-              <EditIcon />
-            </IconButton>
-          </TableCell>
-          </TableRow>
-          )
-        })}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </CardContent>
-</Card>
-    </div>
-  </div>
   );
 }
 

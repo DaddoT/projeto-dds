@@ -23,16 +23,16 @@ export default function Options() {
 
 const classes = useStyles();
 
-    return (
-<div className="Options">
-        <h2>Selecione sua categoria de usuário</h2> 
-        <div className={classes.buttons}>
-        <Button variant="contained" color="default" fullWidth> <Link to="/signupuser"> <p>Usuário</p> </Link> </Button>
-        <div id="divider" />
-        <Button variant="contained" color="default" fullWidth> <Link to="/signupempresa"> <p>Empresa</p> </Link> </Button>
-        <div id="divider" />
-        <Button variant="contained" color="default" fullWidth> <Link to="/signupempresarial"> <p>Empresarial</p> </Link> </Button>
-        </div>
-</div>
-    );       
+  return (
+    <div className="Options">
+      <h2>Selecione sua categoria de usuário</h2> 
+      <div className={classes.buttons}>
+      <Button variant="contained" color="default" fullWidth> <Link to="/signupuser"> <p>Usuário</p> </Link> </Button>
+      <div id="divider" />
+      <Button variant="contained" color="default" fullWidth> <Link to="/signupempresa"> <p>Empresa</p> </Link> </Button>
+      <div id="divider" />
+      <Button variant="contained" color="default" fullWidth> <Link to="/signupempresarial"> <p>Empresarial</p> </Link> </Button>
+      </div>
+    </div>
+  );       
 }

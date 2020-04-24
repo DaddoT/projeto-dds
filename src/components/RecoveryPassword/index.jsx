@@ -47,22 +47,22 @@ const recovery_password = (e) =>{
 
 
 return (
-<div>
-<Header {...props}/>
-<div id="input">
-  <form className={classes.textField} autoComplete="off" onSubmit={(e)=>recovery_password(e)}>
-    <p>Insira seu email:</p> <br/>
-    <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
-      onChangeHandler(event)}
-       required/> <br /><br />
-        <div id="buttons">
-          <Button variant="contained" color="default" type="submit" fullWidth>
-            Recuperar conta
-          </Button> <br /> <br />
-        </div>
-  </form>
-</div>
-</div>
+  <div>
+  <Header {...props}/>
+    <div id="input">
+      <form className={classes.textField} autoComplete="off" onSubmit={(e)=>recovery_password(e)}>
+        <p>Insira seu email:</p> <br/>
+        <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
+          onChangeHandler(event)}
+          required/> <br /><br />
+            <div id="buttons">
+              <Button variant="contained" color="default" type="submit" fullWidth>
+                Recuperar conta
+              </Button> <br /> <br />
+            </div>
+      </form>
+    </div>
+  </div>
 );
 
 }
