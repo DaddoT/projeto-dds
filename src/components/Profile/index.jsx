@@ -17,6 +17,9 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Select from '@material-ui/core/Select/Select';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 
 
 export default function ProfilePage(props){
@@ -68,7 +71,7 @@ export default function ProfilePage(props){
       marginTop: '-38px',
     },
     table: {
-      marginTop: '-25vh',
+      marginTop: '-35vh',
       marginLeft: '75vh',
       width: '50%'
     },
@@ -118,26 +121,38 @@ export default function ProfilePage(props){
         <div className={classes.horarios}>
         <TextField id="time" label="Horario de chegada" type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} /> <br />    
         <TextField id="time" label="Horario de saída"   type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
-        </div>
+        </div> <br />
+        <Button type="submit" variant="contained" color="default">Conceder</Button> 
       </form>
 
     <Card className={classes.table}>
     <CardContent>
-      <TableContainer component={Paper}>
+      <TableContainer>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>nome do user</TableCell>
             <TableCell> status</TableCell>
             <TableCell> horario</TableCell>
-            <TableCell> aaa</TableCell>
+            <TableCell align="right"> Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
 
+        <TableCell>falso </TableCell>
+        <TableCell>nome</TableCell>
+        <TableCell>mentiroso</TableCell>
 
-              {/*  mapeamento */}
+        <TableCell align="right">
 
+        <IconButton align="right">   
+          <DeleteIcon />
+        </IconButton>
+        <IconButton align="right">
+          <EditIcon />
+        </IconButton>
+
+        </TableCell>
 
         </TableBody>
       </Table>
