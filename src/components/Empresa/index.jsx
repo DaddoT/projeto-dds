@@ -211,17 +211,17 @@ export default function Empresa(props){
 
     const handleChange = (e, ref=false, doc="")=>{
         const {name, value} = e.currentTarget;   
-        if (ref === true){
-            setState({
-                ...state, 
-                [name]: database.doc(doc+"/"+value).ref
-            });
-        } else {
+        // if (ref === true){
+        //     setState({
+        //         ...state, 
+        //         [name]: database.doc(doc+"/"+value).ref
+        //     });
+        // } else {
             setState({
                 ...state, 
                 [name]: value
             });
-        }
+        //}
     }
 
 
@@ -248,12 +248,12 @@ export default function Empresa(props){
                     <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento"/>                    
                     <br/>
                     <br/>
-                    <Select native value={selectKey} variant="outlined" size="small"name="empresaMae" required onChange={(e)=>handleChange(e, true,"empresariais")}>
+                    {/* <Select native value={selectKey} variant="outlined" size="small"name="empresaMae" required onChange={(e)=>handleChange(e, true,"empresariais")}>
                     <option aria-label="None" value="">Selecione uma empresa</option>
                     {empresaMae.map((e)=>{
                         return (<option value={e._key}>{e.data.fantasia}</option>)
                     })}
-                    </Select>
+                    </Select> */}
                     <br/> <br />
                     <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
                 </form>

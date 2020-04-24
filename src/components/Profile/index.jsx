@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {TextField , Button} from "@material-ui/core";
 import { fb, database, auth } from '../firebase.js';
 import { Link, useHistory } from "react-router-dom";
@@ -102,6 +102,86 @@ export default function ProfilePage(props){
 
     const classes = useStyles()
 
+    const tpl = {
+      horac: "",
+      horas: "",
+      email: "",
+    }
+
+    const [state, setState] = useState({});
+    const [acessos, setAcessos] = useState([]);
+    const [editing, setEditing] = useState(null);
+
+    useEffect(() => {
+      const unsubscribe = database.collection("acessos").where('uid', '==', props.user[0])
+      .onSnapshot((query) => {
+          let docs = [];
+          query.forEach((doc) => {
+              const data  = doc.data();
+
+              docs.push({
+                  _key: doc.id,
+                  data: data,
+              })
+          })
+
+          setAcessos(docs)
+      })
+      return unsubscribe;
+  },[])
+
+  const handleChange = (e, ref=false, doc="")=>{
+    const {name, value} = e.currentTarget;   
+    // if (ref === true){
+    //     setState({
+    //         ...state, 
+    //         [name]: database.doc(doc+"/"+value).ref
+    //     });
+    // } else {
+        setState({
+            ...state, 
+            [name]: value
+        });
+        console.log(state)
+    //}
+}
+    
+  const submit = (e) =>{
+    e.preventDefault();
+    if (editing !== null){
+        database.collection("acessos").doc(editing).update(state).then((e)=>{
+          setEditing(false);
+          setState(tpl);
+        }).catch((e)=>{
+            console.log(e);
+        })
+    } else {
+        database.collection("acessos").add({...state, uid: props.user[0]}).then((e)=>{
+          setState(tpl);
+        }).catch((e)=>{
+            console.log(e);
+        })
+    }
+  }
+
+  const editElem = (key) =>{
+    setEditing(key);
+    let enty = acessos.filter((e)=> e._key === key);
+    setState(enty[0].data);
+    //setSelectKey(enty[0].data.empresaMae.id)
+  }
+  const deleteElem = (key) =>{
+      if (window.confirm("Você tem certeza que deseja deletar?")){
+          database.collection("acessos").doc(key).delete().then(()=>{      
+              setAcessos(acessos.filter((e)=> e._key !== key));
+              alert("Deletado com sucesso!")
+          }).catch(()=>{
+              alert("Erro ao deletar")
+          })
+      }
+  }
+
+
   return (
 
 <div className="Page">
@@ -121,21 +201,18 @@ export default function ProfilePage(props){
      <div className="dashboard" > {/* dashboard */}
      {/* <p className={classes.log}>Olá, {props.user[1]}</p>   */}
      <div className={classes.container}>  
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={(e)=>submit(e)}>
       <h1>Acessos de usuário</h1> <br />
-        <TextField required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
-        <Select native variant="outlined" size="small"name="empresaMae" required  >
+        <TextField onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
+        {/* <Select native variant="outlined" size="small"name="empresaMae" required  >
                     <option aria-label="None" value="">Selecione uma empresa</option>
-                    {/* {empresaMae.map((e)=>{
-                        return (<option value={e._key}>{e.data.fantasia}</option>)
-                    })} */}
-                    </Select> <br/>
+                    </Select> <br/> */}
         <br/> 
         <div className={classes.horarios}>
-        <TextField id="time" label="Horario de chegada" type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
-        <TextField id="time" label="Horario de saída"   type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
+        <TextField onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
+        <TextField onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída"   type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
         </div> <br />
-        <Button type="submit" variant="contained" color="default">Conceder</Button> 
+                  <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button> 
       </form>
       </div>
     <Card className={classes.table}>
@@ -144,29 +221,30 @@ export default function ProfilePage(props){
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>nome do user</TableCell>
-            <TableCell> status</TableCell>
-            <TableCell> horario</TableCell>
+            <TableCell>E-mail</TableCell>
+            <TableCell> Horario Entrada</TableCell>
+            <TableCell> Horario Saida</TableCell>
             <TableCell align="right"> Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-
-        <TableCell>falso </TableCell>
-        <TableCell>nome</TableCell>
-        <TableCell>mentiroso</TableCell>
-
-        <TableCell align="right">
-
-        <IconButton align="right">   
-          <DeleteIcon />
-        </IconButton>
-        <IconButton align="right">
-          <EditIcon />
-        </IconButton>
-
-        </TableCell>
-
+        {acessos.map((el)=>{
+          return (
+          <TableRow key={el._key}>
+          <TableCell>{el.data.email}</TableCell>
+          <TableCell>{el.data.horac}</TableCell>
+          <TableCell>{el.data.horas}</TableCell>
+          <TableCell align="right">
+            <IconButton onClick={(e)=>deleteElem(el._key)} align="right">   
+              <DeleteIcon />
+            </IconButton>
+            <IconButton onClick={(e)=>editElem(el._key)} align="right">
+              <EditIcon />
+            </IconButton>
+          </TableCell>
+          </TableRow>
+          )
+        })}
         </TableBody>
       </Table>
     </TableContainer>
