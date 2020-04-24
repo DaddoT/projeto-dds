@@ -71,13 +71,13 @@ export default function ProfilePage(props){
       marginTop: '-38px',
     },
     table: {
-      marginTop: '-35vh',
+      marginTop: '5vh',
       marginLeft: '75vh',
       width: '50%'
     },
     form: {
       marginLeft: '20px',
-      marginTop: '10vh',
+      marginTop: '2vh',
     },
     divider: {
       minWidth: '10px',
@@ -85,8 +85,19 @@ export default function ProfilePage(props){
       display: 'inline-block',
     },
     horarios: {
-      width: '30vh',
-    }
+      width: '25vh',
+    },
+    container: {
+    position: 'absolute',
+    top: '5vh',
+    marginLeft: '20px',
+    backgroundColor: 'white',
+    width: '40%',
+    height: '45vh',
+    borderRadius: '15px 50px 15px',
+    fontFamily: 'monospace',
+    fontSize: '15px',
+    },
   }));
 
     const classes = useStyles()
@@ -109,7 +120,9 @@ export default function ProfilePage(props){
 
      <div className="dashboard" > {/* dashboard */}
      {/* <p className={classes.log}>Olá, {props.user[1]}</p>   */}
+     <div className={classes.container}>  
       <form className={classes.form}>
+      <h1>Acessos de usuário</h1> <br />
         <TextField required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
         <Select native variant="outlined" size="small"name="empresaMae" required  >
                     <option aria-label="None" value="">Selecione uma empresa</option>
@@ -119,12 +132,12 @@ export default function ProfilePage(props){
                     </Select> <br/>
         <br/> 
         <div className={classes.horarios}>
-        <TextField id="time" label="Horario de chegada" type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} /> <br />    
+        <TextField id="time" label="Horario de chegada" type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
         <TextField id="time" label="Horario de saída"   type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
         </div> <br />
         <Button type="submit" variant="contained" color="default">Conceder</Button> 
       </form>
-
+      </div>
     <Card className={classes.table}>
     <CardContent>
       <TableContainer>
