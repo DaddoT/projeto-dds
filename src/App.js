@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
 import SignIn from './components/SignIn';
 import SignUpUser from './components/SignUpUser';
 import Profile from './components/Profile';
 import AboutText from './components/AboutText';
 import PricingCard from './components/PricingCard';
 import Loader from './components/Loader';
-
 import RecoveryPassword from './components/RecoveryPassword';
-import { fb, database, auth } from './components/firebase.js';
+import { auth } from './components/firebase.js';
 import "./styles.css";
 import {
   BrowserRouter as Router,
@@ -16,7 +14,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-// import { render } from '@testing-library/react'
 import Empresa from './components/Empresa';
 import Empresarial from './components/Empresarial';
 import Index from './components/Index';

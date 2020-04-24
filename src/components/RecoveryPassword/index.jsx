@@ -1,17 +1,13 @@
-
-
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, useHistory } from "react-router-dom";
-import { database, auth, } from '../firebase.js';
+import { useHistory } from "react-router-dom";
+import { auth } from '../firebase.js';
 import './stylesRecovery.css';
 import Header from '../Header';
 
 const RecoveryPassword = (props) => {
-
-    const history = useHistory();
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -55,7 +51,6 @@ return (
 <Header {...props}/>
 <div id="input">
   <form className={classes.textField} autoComplete="off" onSubmit={(e)=>recovery_password(e)}>
-    {/* onSubmit={onChangeHandler} onSubmit={createUserWithEmailAndPasswordHandler}*/}
     <p>Insira seu email:</p> <br/>
     <TextField label="Email" variant="outlined" type="email" fullWidth name="email" onChange={(event)=>
       onChangeHandler(event)}

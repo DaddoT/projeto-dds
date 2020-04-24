@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Link, useHistory } from "react-router-dom";
-import { fb, database, auth } from '../firebase.js';
+import { fb , auth } from '../firebase.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "../Header";
 
@@ -43,9 +43,8 @@ var provider = new fb.auth.GoogleAuthProvider();
 auth.languageCode = "pt";
 console.log(provider);
 fb.auth().signInWithPopup(provider).then(function(result) {
-  //
 }).catch((error)=>{
-//mostrar os errors
+//mostrar os erros
 console.log(error);
 });
 
@@ -53,10 +52,6 @@ console.log(error);
 
 
 const Login = (event) => {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
-
-
   event.preventDefault()
   if ( email === '' || password === '' ) {
     alert('Preencher todos os campos')
@@ -70,22 +65,13 @@ const Login = (event) => {
 
     const obj = { email: email , password: password }
     console.log(obj)
-    //addUser(obj)
   }
 
 };
 
-
-// export default function Inputs() {
 const classes = useStyles();
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
-
-// const [error, setError] = useState(null);
-// const signInWithEmailAndPasswordHandler =
-// (event,email, password) => {
-// event.preventDefault();
-// };
 
 const onChangeHandler = (event) => {
 const {name, value} = event.currentTarget;
@@ -103,7 +89,7 @@ return (
     <Header {...props}/>
 
 <div className={classes.inputs}>
-  <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off"> {/* onSubmit={onChangeHandler} */}
+  <form onSubmit={(e)=>Login(e)} className={classes.textField} noValidate autoComplete="off">
     <p2 className={classes.links}> Insira seu email:</p2> <br /> <br />
     <TextField label="Email" variant="outlined" type="email" fullWidth name="userEmail" value={email} id="userEmail"
       onChange={(event)=> onChangeHandler(event)} 

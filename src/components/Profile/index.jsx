@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {TextField , Button} from "@material-ui/core";
-import { fb, database, auth } from '../firebase.js';
+import { database, auth } from '../firebase.js';
 import { Link, useHistory } from "react-router-dom";
 import './stylesProfile.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,10 +13,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Select from '@material-ui/core/Select/Select';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,10 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 export default function ProfilePage(props){
   var history = useHistory();
-  const rows = [
-    // mapeamento
-  ];
-
+  
   console.log(props)
 
   const signOut = ()=>{
@@ -58,7 +53,6 @@ export default function ProfilePage(props){
     fontFamily: 'monospace',
     color: 'white',
     fontSize: '12px',
-    marginLeft: '10px',
     textDecoration: 'none',  
     marginLeft: '45px', 
     marginTop: '65vh',
@@ -132,18 +126,11 @@ export default function ProfilePage(props){
 
   const handleChange = (e, ref=false, doc="")=>{
     const {name, value} = e.currentTarget;   
-    // if (ref === true){
-    //     setState({
-    //         ...state, 
-    //         [name]: database.doc(doc+"/"+value).ref
-    //     });
-    // } else {
         setState({
             ...state, 
             [name]: value
         });
         console.log(state)
-    //}
 }
     
   const submit = (e) =>{
@@ -194,21 +181,15 @@ export default function ProfilePage(props){
     <div className="ButtonsDash">
       <Button color="default" ><Link to="/empresa" className={classes.p}>Registrar empresa</Link></Button>
       <Button color="default" ><Link to="/empresarial" className={classes.p}> Registrar empresarial</Link></Button> 
-      {/* <div className={classes.deslog}> */}
       <Button color="default" onClick={()=>signOut()} className={classes.deslog}>Deslogar</Button>
-      {/* </div> */}
     </div>
   </Drawer>
 
-     <div className="dashboard" > {/* dashboard */}
-     {/* <p className={classes.log}>Olá, {props.user[1]}</p>   */}
+     <div className="dashboard" >
      <div className={classes.container}>  
       <form className={classes.form} onSubmit={(e)=>submit(e)}>
       <h1>Acessos de usuário</h1> <br />
         <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
-        {/* <Select native variant="outlined" size="small"name="empresaMae" required  >
-                    <option aria-label="None" value="">Selecione uma empresa</option>
-                    </Select> <br/> */}
         <br/> 
         <div className={classes.horarios}>
         <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />   
