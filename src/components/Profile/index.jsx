@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from "@material-ui/core";
+import {TextField , Button} from "@material-ui/core";
 import { fb, database, auth } from '../firebase.js';
 import { Link, useHistory } from "react-router-dom";
 import './stylesProfile.css';
@@ -7,9 +7,23 @@ import { makeStyles } from '@material-ui/core/styles';
 import Header from '../Header';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Select from '@material-ui/core/Select/Select';
+
 
 export default function ProfilePage(props){
   var history = useHistory();
+  const rows = [
+    // mapeamento
+  ];
 
   console.log(props)
 
@@ -51,8 +65,25 @@ export default function ProfilePage(props){
       color: 'white',
       fontSize: '15px',
       marginLeft: '10px',
-      marginTop: '-18px',
+      marginTop: '-38px',
     },
+    table: {
+      marginTop: '-25vh',
+      marginLeft: '75vh',
+      width: '50%'
+    },
+    form: {
+      marginLeft: '20px',
+      marginTop: '10vh',
+    },
+    divider: {
+      minWidth: '10px',
+      height: 'auto',
+      display: 'inline-block',
+    },
+    horarios: {
+      width: '30vh',
+    }
   }));
 
     const classes = useStyles()
@@ -73,8 +104,46 @@ export default function ProfilePage(props){
     </div>
   </Drawer>
 
-    <div className="dashboard" >
-    <p className={classes.log}>Olá, {props.user[1]}</p>  
+     <div className="dashboard" > {/* dashboard */}
+     {/* <p className={classes.log}>Olá, {props.user[1]}</p>   */}
+      <form className={classes.form}>
+        <TextField required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider}  />
+        <Select native variant="outlined" size="small"name="empresaMae" required  >
+                    <option aria-label="None" value="">Selecione uma empresa</option>
+                    {/* {empresaMae.map((e)=>{
+                        return (<option value={e._key}>{e.data.fantasia}</option>)
+                    })} */}
+                    </Select> <br/>
+        <br/> 
+        <div className={classes.horarios}>
+        <TextField id="time" label="Horario de chegada" type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} /> <br />    
+        <TextField id="time" label="Horario de saída"   type="time" className={classes.horario} fullWidth InputLabelProps={{shrink: true,}}inputProps={{step: 300, }} />
+        </div>
+      </form>
+
+    <Card className={classes.table}>
+    <CardContent>
+      <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>nome do user</TableCell>
+            <TableCell> status</TableCell>
+            <TableCell> horario</TableCell>
+            <TableCell> aaa</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+
+              {/*  mapeamento */}
+
+
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </CardContent>
+</Card>
     </div>
   </div>
   );

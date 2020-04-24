@@ -54,7 +54,7 @@ export default function SimpleCard(props) {
     <CardContent>
       <div>
         <h2>Tabela de Preços</h2>  
-        <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
