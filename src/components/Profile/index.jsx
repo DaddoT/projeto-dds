@@ -40,18 +40,18 @@ export default function ProfilePage(props){
     },
     drawerPaper: {
       width: drawerWidth,
-      backgroundColor: '#282828',
+      backgroundColor: 'rgba(255,255,255,0.5)',
     },
     p: {
       fontFamily: 'monospace',
-      color: 'white',
+      color: '#040404',
       fontSize: '12px',
       marginLeft: '10px',
       textDecoration: 'none',
     },
     deslog: {
       fontFamily: 'monospace',
-      color: 'white',
+      color: '#040404',
       fontSize: '12px',
       textDecoration: 'none',  
       marginLeft: '45px', 

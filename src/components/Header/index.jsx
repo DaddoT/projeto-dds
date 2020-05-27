@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
                   onClose={handleClose}
                 >
                   <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+                  
                 </Menu>
               </div>
             ): (
