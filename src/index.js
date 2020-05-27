@@ -2,12 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ParticlesBg from "particles-bg";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
+
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <ParticlesBg type='cobweb' bg={true} />
+  </div>
+  
+  // <React.StrictMode>
+  // </React.StrictMode>
+  ,document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
