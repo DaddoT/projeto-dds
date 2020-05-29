@@ -1,4 +1,4 @@
-import React, {useState, } from "react";
+import React, { useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -28,77 +28,76 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  export default function Header(props) {
-    
-    const classes = useStyles();
-    const [auth, setAuth] = useState(true);
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-  
-    const handleChange = (event) => {
-      setAuth(event.target.checked);
-    };
-  
-    const handleMenu = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-  
+export default function Header(props) {
 
-    return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar className="bar">
-            
-            <img src={logo} className="logo-img" alt="logo"/>
+  const classes = useStyles();
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-            <Link to="/"       className={classes.button}><Button color="inherit">Home</Button></Link>
-            <Link to="/about"  className={classes.button}><Button color="inherit">About</Button></Link>
-            <Link to="/pricing"className={classes.button}><Button  color="inherit">Pricing</Button></Link>
-          
-            {/* kkkk */}
-            <div className={classes.space}></div>
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
 
-            {props.user !== null ? (
-              <div >
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
-                  
-                </Menu>
-              </div>
-            ): (
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar className="bar">
+
+          <img src={logo} className="logo-img" alt="logo" />
+
+          <Link to="/SignIn" className={classes.button}><Button color="inherit">Home</Button></Link>
+          <Link to="/about" className={classes.button}><Button color="inherit">About</Button></Link>
+          <Link to="/pricing" className={classes.button}><Button color="inherit">Pricing</Button></Link>
+
+          {/* kkkk */}
+          <div className={classes.space}></div>
+
+          {props.user !== null ? (
+            <div >
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+              </Menu>
+            </div>
+          ) : (
               <Link to="signin"><Button className={classes.button} color="inherit">Login</Button></Link>
             )}
 
-          </Toolbar>
-        </AppBar>
-              
-       </div>
-    );
-  }
+        </Toolbar>
+      </AppBar>
+
+    </div>
+  );
+}

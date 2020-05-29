@@ -14,7 +14,7 @@ export default function SignIn(props) {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      
+
     },
     textField: {
       marginLeft: theme.spacing(1),
@@ -56,8 +56,7 @@ export default function SignIn(props) {
     event.preventDefault()
     if (email === '' || password === '') {
       alert('Preencher todos os campos')
-    } else {
-
+    }else {
       auth.signInWithEmailAndPassword(email, password).then((e) => {
         history.push("profile");
       }).catch((e) => {

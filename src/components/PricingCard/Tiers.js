@@ -3,7 +3,7 @@ const tiers = [
   {
     title: 'Basic',
     price: '500',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+    description: ['unlimited user number', '5 GB of storage', 'Help center access', 'Email support'],
     buttonText: 'Sign up for basic',
     buttonVariant: 'outlined',
   },
@@ -12,8 +12,8 @@ const tiers = [
     subheader: 'Most popular',
     price: '1000',
     description: [
-      '20 users included',
-      '10 GB of storage',
+      'unlimited user number',
+      '15 GB of storage',
       'Help center access',
       'Priority email support',
     ],
@@ -24,7 +24,7 @@ const tiers = [
     title: 'Premium',
     price: '3000',
     description: [
-      '50 users included',
+      'unlimited user number',
       '30 GB of storage',
       'Help center access',
       'Phone & email support',

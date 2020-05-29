@@ -36,7 +36,14 @@ const SignUp = (props) => {
     event.preventDefault()
     if (email === '' || password === '') {
       alert('Preencher todos os campos')
-    } else {
+    }
+    else if (!password.match(/[a-z]+/) || !password.match(/[A-Z]+/)) {
+      alert('preciso ter letras maiusculas ou minusculas')
+    }
+    else if (!password.match(/[@#$%&*?]/)) {
+      alert(' caracteres')
+    }
+    else {
       const obj = { email: email, password: password }
       console.log(obj)
       addUser(obj)
