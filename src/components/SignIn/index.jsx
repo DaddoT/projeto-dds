@@ -14,7 +14,12 @@ export default function SignIn(props) {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-
+    },
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
     textField: {
       marginLeft: theme.spacing(1),
@@ -37,6 +42,7 @@ export default function SignIn(props) {
       textDecoration: 'none',
       color: 'rgb(39, 39, 39)',
     },
+
   }));
 
   const signUpGoogle = () => {
@@ -56,7 +62,7 @@ export default function SignIn(props) {
     event.preventDefault()
     if (email === '' || password === '') {
       alert('Preencher todos os campos')
-    }else {
+    } else {
       auth.signInWithEmailAndPassword(email, password).then((e) => {
         history.push("profile");
       }).catch((e) => {
@@ -88,33 +94,50 @@ export default function SignIn(props) {
     <div>
       <Header {...props} />
 
-      <div className={classes.inputs}>
-        <form onSubmit={(e) => Login(e)} className={classes.textField} noValidate autoComplete="off">
-          <p2 className={classes.links}> Insira seu email:</p2> <br /> <br />
-          <TextField label="Email" variant="outlined" type="email" fullWidth name="userEmail" value={email} id="userEmail"
-            onChange={(event) => onChangeHandler(event)}
-          /> <br /> <br />
+      <div className={classes.paper}>
 
-          <p2 className={classes.links}>Insira sua senha:</p2> <br /> <br />
-          <TextField label="Senha" variant="outlined" type="password" fullWidth name="userPassword" value={password}
-            id="userPassword" onChange={(event) => onChangeHandler(event)}
-          /> <br /><br />
+        <div className={classes.inputs}>
+          <form onSubmit={(e) => Login(e)} className={classes.textField} noValidate autoComplete="off">
+            <p className={classes.links}> Insira seu email:</p> <br /> <br />
+            <TextField label="Email" variant="outlined" type="email" fullWidth name="userEmail" value={email} id="userEmail"
+              onChange={(event) => onChangeHandler(event)}
+            /> <br /> <br />
 
-          <Button variant="contained" color="default" type="submit">
-            Log in
+            <p className={classes.links}>Insira sua senha:</p> <br /> <br />
+            <TextField label="Senha" variant="outlined" type="password" fullWidth name="userPassword" value={password}
+              id="userPassword" onChange={(event) => onChangeHandler(event)}
+            /> <br /><br />
+
+            <Button type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit} variant="contained" color="default" type="submit">
+              Log in
             </Button> <br /> <br />
-          <Button variant="contained" onClick={() => signUpGoogle()} color="default">
-            Sign-in com Google
+            <Button type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit} variant="contained" onClick={() => signUpGoogle()} color="default">
+              Sign-in com Google
             </Button> <br /> <br />
-          <Link to="/recovery" className={classes.links}>Esqueci minha senha</Link> <br /> <br />
+            <Link to="/recovery" className={classes.links}>Esqueci minha senha</Link> <br /> <br />
 
-          <p2 className={classes.links}>Ainda não possui uma conta?</p2> <br /> <br />
-          <Button variant="contained" color="default">
-            <Link to="/signup" className={classes.links}>
-              SignUp </Link>
-          </Button> <br />
-        </form>
+            <p className={classes.links}>Ainda não possui uma conta?</p> <br /> <br />
+            <Button type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit} variant="contained" color="default">
+              <Link to="/signup" className={classes.links}>
+                SignUp
+              </Link>
+            </Button> <br />
+          </form>
+        </div>
       </div>
+
     </div>
   );
 }
