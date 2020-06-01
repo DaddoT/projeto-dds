@@ -16,6 +16,7 @@ export default function AboutText(props) {
                 apenas com a aproximação do celular na catraca, é feita uma verificação para conceder, 
                 ou bloquear o acesso daquele usuário nas instalações do empresarial.
               </div>
+              <hr className="hr"/>
               <div className="box-2">
                 <h2>Nossa Empresa:</h2>
                A empresa surgiu através da UniFBV, criada para ser uma das iniciativas a serem desenvolvidas no semestre denominado de "projetão",

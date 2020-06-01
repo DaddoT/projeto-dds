@@ -14,15 +14,11 @@
 } 
 
 .box-1 {
-    text-align: justify;
-    padding-left: 10%;
-    padding-right: 60%;
+    text-align: center;
     
 }
 .box-2 {
-    text-align: justify;
-    padding-left: 40%;
-    padding-right: 10%;
+    text-align: center;
 }
 .box-3 h1 {
     text-align: center;
