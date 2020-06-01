@@ -33,7 +33,7 @@ export default function AboutText(props) {
                 * João Felipe <br />
                 * João Viktor Lima
               </div>
-          </div>  
+          </div> 
         </div>
     );
 }
