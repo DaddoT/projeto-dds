@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import "./stylesHeader.css";
 import logo from './logoHeader.png';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { database, auth } from '../firebase.js';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header(props) {
+
+  var history = useHistory();
 
   const classes = useStyles();
   const [auth, setAuth] = useState(true);
@@ -53,11 +56,21 @@ export default function Header(props) {
       <AppBar position="static">
         <Toolbar className="bar">
 
-          <img src={logo} className="logo-img" alt="logo" />
+          
 
-          <Link to="/SignIn" className={classes.button}><Button color="inherit">Home</Button></Link>
-          <Link to="/about" className={classes.button}><Button color="inherit">About</Button></Link>
-          <Link to="/pricing" className={classes.button}><Button color="inherit">Pricing</Button></Link>
+          <Link to="/" className={classes.button}>
+            <Button color="inherit">
+              <img src={logo} className="logo-img" alt="GateKey"/>
+            </Button>
+          </Link>
+
+          <Link to="/about" className={classes.button}>
+            <Button color="inherit">About</Button>
+          </Link>
+
+          <Link to="/pricing" className={classes.button}>
+            <Button color="inherit">Pricing</Button>
+          </Link>
 
           {/* kkkk */}
           <div className={classes.space}></div>
@@ -88,12 +101,20 @@ export default function Header(props) {
                 open={open}
                 onClose={handleClose}
               >
-                <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+                <Link to="/profile" className={classes.profile}>
+                  <MenuItem onClick={handleClose}>
+                    Profile
+                  </MenuItem>
+                </Link>
               </Menu>
             </div>
           ) : (
-              <Link to="signin"><Button className={classes.button} color="inherit">Login</Button></Link>
-            )}
+              <Link to="signin">
+                <Button className={classes.button} color="inherit">
+                  Login
+                </Button>
+              </Link>
+          )}
 
         </Toolbar>
       </AppBar>
