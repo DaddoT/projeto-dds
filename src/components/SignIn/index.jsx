@@ -16,7 +16,7 @@ export default function SignIn(props) {
       flexWrap: 'wrap',
     },
     paper: {
-      marginTop: theme.spacing(8),
+      marginTop: theme.spacing(4),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

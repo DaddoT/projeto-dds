@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 // import { Link, useHistory } from "react-router-dom";
 // import { database, auth, } from '../firebase.js';
@@ -11,8 +9,7 @@ const Index = (props)=> {
     return (
 
         <div>
-            <Header {...props}/>
-            <h1></h1>
+            <Header {...props}/>        
         </div>
     )
 }

@@ -11,6 +11,8 @@ import logo from './logoHeader.png';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
+
+
 const useStyles = makeStyles((theme) => ({
   space: {
     flexGrow: 1,
@@ -26,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
     textDecoration: "none",
   },
+  bar:{
+      background: '#282828',
+  },
 }));
 
 export default function Header(props) {
+
 
   const classes = useStyles();
   const [auth, setAuth] = useState(true);
@@ -51,9 +57,9 @@ export default function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className="bar">
+        <Toolbar className= {classes.bar}>
 
-          <img src={logo} className="logo-img" alt="logo" />
+          {/* <img src={logo} className="logo-img" alt="logo" /> */}
 
           <Link to="/SignIn" className={classes.button}><Button color="inherit">Home</Button></Link>
           <Link to="/about" className={classes.button}><Button color="inherit">About</Button></Link>
@@ -89,6 +95,9 @@ export default function Header(props) {
                 onClose={handleClose}
               >
                 <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+                <Link to="/empresa" className={classes.profile}><MenuItem onClick={handleClose}>Empresa</MenuItem></Link>
+                <Link to="/empresarial" className={classes.profile}><MenuItem onClick={handleClose}>Empresarial</MenuItem></Link>
+               
               </Menu>
             </div>
           ) : (
@@ -100,4 +109,4 @@ export default function Header(props) {
 
     </div>
   );
-}
+}	
