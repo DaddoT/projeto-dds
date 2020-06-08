@@ -9,6 +9,7 @@ ReactDOM.render(
 
     <App />
     <ParticlesBg type='cobweb' bg={true} />
+    <ParticlesBg color="#ff0000" num={200} type="cobweb" bg={true} />
   </div>
   
   // <React.StrictMode>

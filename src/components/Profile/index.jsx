@@ -52,10 +52,6 @@ export default function ProfilePage(props) {
       },
     },
     appBar: {
-      // [theme.breakpoints.up('sm')]: {
-      //   width: `calc(100% - ${drawerWidth}px)`,
-      //   marginLeft: drawerWidth,
-      // },
       zIndex: theme.zIndex.drawer + 1,
     },
     menuButton: {
@@ -178,7 +174,7 @@ export default function ProfilePage(props) {
   const deleteElem = (key) => {
     database.collection("acessos").doc(key).delete().then(() => {
       setAcessos(acessos.filter((e) => e._key !== key));
-      alert("Deletado com sucesso!")
+      // alert("Deletado com sucesso!")
     }).catch(() => {
       alert("Erro ao deletar")
     })
