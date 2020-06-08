@@ -307,7 +307,7 @@ export default function Empresa(props) {
                             <TextField onChange={(e) => handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small" /> <br />
                             <br />
                             <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e) => { e.target.value = _maskCEP(e.target.value); handleChange(e) }} onBlur={(e) => consultaCEP(e)} label="CEP" /> <div className={classes.divider} />
-                            {/* <TextField onChange={(e) => handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro" /><br /> */}
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro" /><br />
                             <br />
                             <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero" />  <div className={classes.divider} />
                             <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade" /> <br />
