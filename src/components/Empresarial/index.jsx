@@ -9,12 +9,22 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+// import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
     form: {
+        marginTop: '10px',
         marginLeft: '30px',
-        marginTop: '80px',
     },
     divider: {
         minWidth: '10px',
@@ -22,33 +32,41 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline-block',
     },
     empresariais: {
-        position: 'absolute',
-        top: '15vh',
-        marginLeft: '38%',
-        backgroundColor: 'rgba(255,255,255,0.5)', 
-        width: '60%',
-        height: '80vh',
+        position: 'static',
+        top: '2vh',
+        marginLeft: '0%',
+        marginRight: '5%',
+        backgroundColor: 'rgba(255,255,255,0)',
+        width: '90%',
+        height: '85vh',
         borderRadius: '15px 80px 15px',
         overflowY: 'auto',
     },
     cards: {
-        display: 'inline-block',    
-        backgroundColor: '#white',
-        height: '10vh',
-        width: '90%',
+        // display: 'inline-block',
+        backgroundColor: 'rgba(255,255,255,0.5)',
+        // height: '15vh',
+        width: '100%',
         borderRadius: '15px 30px 15px',
-        marginTop: '20px',
-        marginBottom: '20px',
-        marginLeft: '20px',
+        // marginTop: '20px',
+        // marginBottom: '20px',
+        // marginLeft: '20px',
+        minWidth: 300,
     },
     cardContent: {
-        display: 'inline-block', 
+        display: 'inline-block',
+
     },
     buttonCard: {
-        display: 'inline-block',    
-        marginLeft: '75%',
+        display: 'inline-block',
+        marginLeft: '60%',
+        width:'75%',
     },
     }));
+
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
 
 export default function Empresarial(props){
     
@@ -137,32 +155,74 @@ export default function Empresarial(props){
         setState(enty[0].data);
     }
     const deleteElem = (key) =>{
-        if (window.confirm("Você tem certeza que deseja deletar?")){
+        // if (window.confirm("Você tem certeza que deseja deletar?")){
             database.collection(COLLECTION_NAME).doc(key).delete().then(()=>{      
                 setEmpresarial(empresarial.filter((e)=> e._key !== key));
                 alert("Deletado com sucesso!")
             }).catch(()=>{
                 alert("Erro ao deletar")
             })
-        }
+        // }
     }
     
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     
     const _draw_row = (row) =>{
         return(
             <Card key={row._key} className={classes.cards}>
-                <CardContent>
-                    <p className={classes.cardContent}>{row.data.fantasia}</p>   
-                    <div className={classes.buttonCard}> 
-                        <IconButton onClick={()=>deleteElem(row._key)}>
+            <CardContent>
+                <p className={classes.cardContent}>{row.data.fantasia}</p>
+                <div className={classes.buttonCard}>
+                    <div>
+                        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                             <DeleteIcon />
-                        </IconButton>
-                        <IconButton onClick={()=>editElem(row._key)}>
+                        </Button>
+                        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                             <EditIcon />
-                        </IconButton>   
-                    </div>            
-                </CardContent> 
-            </Card> 
+                        </Button>
+
+                        <Dialog
+                            open={open}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-slide-title"
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle id="alert-dialog-slide-title">{"ação necessaria!"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    este evento excluirá o acesso da lista!
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose} color="primary">
+                                    Disagree
+                                </Button>
+                                <Button onClick={() => deleteElem(row._key)} color="primary">
+                                    Agree
+                                </Button>
+                            </DialogActions>
+                            {/* <IconButton >
+                                <EditIcon />
+                            </IconButton> */}
+                        </Dialog>
+
+                    </div>
+                    {/* <IconButton onClick={() => deleteElem(row._key)}>
+                        <DeleteIcon />
+                    </IconButton> */}
+                </div>
+            </CardContent>
+        </Card>
         );
     }
     //
@@ -201,34 +261,90 @@ export default function Empresarial(props){
 
 
     return(
-        <div className="Empresarial">
-            <Header {...props}/>
-            <div className={classes.form}>
-                <form onSubmit={(e)=>onSubmit(e)}>
-                    <p>Insira os dados do empresarial</p> <br />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small"/> <div className={classes.divider}  />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small"/> <br/>
-                    <br/>
-                    <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false: true} helperText={errorCnpj.helperText} onBlur={(e)=>_validateCNPJ(e)} onChange={(e)=>{e.target.value = cnpj.format(e.target.value); handleChange(e);}} size="small" id="standard-size-small"/>  <div className={classes.divider} />                 
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small"/> <br/>
-                    <br/>
-                    <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e)=>{e.target.value = _maskCEP(e.target.value); handleChange(e)}} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro"/><br/>
-                    <br/>
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero"/>  <div className={classes.divider} />                  
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade"/> <br/>
-                    <br/>
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado"/> <div className={classes.divider} />
-                    <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento"/>
-                    <br/> <br />
-                    <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
-                </form>
+
+        <div className="Empresa">
+            <Header {...props} />
+
+            <div className={classes.root}>
+                {/* <div className={classes.form}> */}
+                <Grid container spacing={3}>
+                    <Grid item xs={6}>
+                        <div className={classes.form}>
+
+                        <form onSubmit={(e) => onSubmit(e)}>
+                            <p>Insira os dados da empresarial</p> <br />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small" /> <div className={classes.divider} />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small" /> <br />
+                            <br />
+                            <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false : true} helperText={errorCnpj.helperText} onBlur={(e) => _validateCNPJ(e)} onChange={(e) => { e.target.value = cnpj.format(e.target.value); handleChange(e); }} size="small" id="standard-size-small" />  <div className={classes.divider} />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small" /> <br />
+                            <br />
+                            <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e) => { e.target.value = _maskCEP(e.target.value); handleChange(e) }} onBlur={(e) => consultaCEP(e)} label="CEP" /> <div className={classes.divider} />
+                            {/* <TextField onChange={(e) => handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro" /><br /> */}
+                            <br />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero" />  <div className={classes.divider} />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade" /> <br />
+                            <br />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado" /> <div className={classes.divider} />
+                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento" />
+                            <br />
+                            {/* <Select native value={selectKey} variant="outlined" size="small"name="empresaMae" required onChange={(e)=>handleChange(e, true,"empresariais")}>
+                                <option aria-label="None" value="">Selecione uma empresa</option>
+                                {empresaMae.map((e)=>{
+                                    return (<option value={e._key}>{e.data.fantasia}</option>)
+                                })}
+                                </Select> */}
+                            <br /> 
+                            <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button>
+                        </form>
+                        </div>
+
+
+                    </Grid>
+                    {/* </div> */}
+
+                   
+                    <Grid item xs={6}>
+                        <div className={classes.empresariais}>
+                            {empresarial.map((e) => _draw_row(e))}
+                        </div>
+                    </Grid>
+
+                </Grid>
+
             </div>
-            {/* <style>borderRadius: '15px 100px 15px',</style> 
-            style={{ overflow-y: scroll }}*/}
-            <div className={classes.empresariais}>
-                {empresarial.map((e)=>_draw_row(e))}
-            </div>
-        </div>
+        </div >
+
+
+
+        // <div className="Empresarial">
+        //     <Header {...props}/>
+        //     <div className={classes.form}>
+        //         <form onSubmit={(e)=>onSubmit(e)}>
+        //             <p>Insira os dados do empresarial</p> <br />
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small"/> <div className={classes.divider}  />
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small"/> <br/>
+        //             <br/>
+        //             <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false: true} helperText={errorCnpj.helperText} onBlur={(e)=>_validateCNPJ(e)} onChange={(e)=>{e.target.value = cnpj.format(e.target.value); handleChange(e);}} size="small" id="standard-size-small"/>  <div className={classes.divider} />                 
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small"/> <br/>
+        //             <br/>
+        //             <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e)=>{e.target.value = _maskCEP(e.target.value); handleChange(e)}} onBlur={(e)=>consultaCEP(e)} label="CEP"/> <div className={classes.divider} />                   
+        //             {/* <TextField onChange={(e)=>handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro"/><br/> */}
+        //             <br/>
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero"/>  <div className={classes.divider} />                  
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade"/> <br/>
+        //             <br/>
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado"/> <div className={classes.divider} />
+        //             <TextField onChange={(e)=>handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento"/>
+        //             <br/> <br />
+        //             <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
+        //         </form>
+        //     </div>
+        //     {/* <style>borderRadius: '15px 100px 15px',</style> 
+        //     style={{ overflow-y: scroll }}*/}
+        //     <div className={classes.empresariais}>
+        //         {empresarial.map((e)=>_draw_row(e))}
+        //     </div>
+        // </div>
     );
 }
