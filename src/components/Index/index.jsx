@@ -4,12 +4,12 @@ import React from 'react';
 import Header from '../Header';
 
 
-const Index = (props)=> {
+const Index = (props) => {
     console.log(props.user);
     return (
 
         <div>
-            <Header {...props}/>        
+            <Header {...props} />
         </div>
     )
 }

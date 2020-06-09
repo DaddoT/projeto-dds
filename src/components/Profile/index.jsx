@@ -179,8 +179,7 @@ export default function ProfilePage(props) {
       alert("Erro ao deletar")
     })
 
-    handleClose()
-
+    handleClose(false)
   }
 
   const [open, setOpen] = React.useState(false);
@@ -285,6 +284,9 @@ export default function ProfilePage(props) {
                           <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                             <DeleteIcon />
                           </Button>
+                          <Button variant="outlined" color="primary" onClick={(e) => editElem(el._key)}>
+                            <EditIcon />
+                          </Button>
                           <Dialog
                             open={open}
                             onClose={handleClose}
@@ -309,9 +311,9 @@ export default function ProfilePage(props) {
                           {/* <IconButton onClick={(e) => deleteElem(el._key)} align="right">
                             <DeleteIcon />
                           </IconButton> */}
-                          <IconButton variant="outlined" color="primary" onClick={(e) => editElem(el._key)} align="right">
+                          {/* <IconButton variant="outlined" color="primary" onClick={(e) => editElem(el._key)} align="right">
                             <EditIcon />
-                          </IconButton>
+                          </IconButton> */}
                         </TableCell>
                       </TableRow>
                     )
