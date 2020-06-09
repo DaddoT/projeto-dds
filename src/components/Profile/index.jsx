@@ -179,6 +179,8 @@ export default function ProfilePage(props) {
       alert("Erro ao deletar")
     })
 
+    handleClose()
+
   }
 
   const [open, setOpen] = React.useState(false);

@@ -181,10 +181,11 @@ export default function Empresa(props) {
         // if (window.confirm("Você tem certeza que deseja deletar?")){
         database.collection(COLLECTION_NAME).doc(key).delete().then(() => {
             setEmpresa(empresa.filter((e) => e._key !== key));
-            alert("Deletado com sucesso!")
+            // alert("Deletado com sucesso!")
         }).catch(() => {
             alert("Erro ao deletar")
         })
+        handleClose()
         // }    
     }
 
@@ -209,7 +210,7 @@ export default function Empresa(props) {
                             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                                 <DeleteIcon />
                             </Button>
-                            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                            <Button variant="outlined" color="primary" onClick={() => editElem(row._key)}>
                                 <EditIcon />
                             </Button>
 
