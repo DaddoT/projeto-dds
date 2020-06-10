@@ -292,7 +292,7 @@ export default function ProfilePage(props) {
                     <TableCell align="right"> Ações</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody hover role="checkbox" tabIndex={-1}>
+                <TableBody  role="checkbox" tabIndex={-1}>
                   {acessos.map((el) => {
                     return (
                       <TableRow key={el._key}>
