@@ -81,12 +81,13 @@ export default function ProfilePage(props) {
         theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
       marginRight: '0%',
       paddingLeft: '10px',
+      borderRadius: '10px',
     },
     space: {
       flexGrow: 1,
     },
     p: {
-      // fontFamily: 'monospace',
+      fontFamily: 'Sans-serif',
       color: '#040404',
       fontSize: '12px',
       marginLeft: '2vh',
@@ -113,6 +114,11 @@ export default function ProfilePage(props) {
     horarios: {
       width: '90%',
     },
+    title: {
+      paddingTop: '1vh',
+      fontFamily: 'Sans-serif',
+      fontSize: '25px',
+    }
   }));
 
   const { window } = props;
@@ -266,15 +272,15 @@ export default function ProfilePage(props) {
         <div className={classes.toolbar} />
         <div className={classes.container}>
           <form className={classes.form} onSubmit={(e) => submit(e)}>
-            <h1>Acessos de usuário</h1> <br />
+            <p className={classes.title}>ACESSOS DE USUÁRIO</p> <br />
             <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider} />
             <br />
             <div className={classes.horarios}>
               <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }}  />
               <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }}  />
             </div> <br />
-            <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button>
-          </form>
+            <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button> 
+          </form> <br />
         </div>
 
         <br />

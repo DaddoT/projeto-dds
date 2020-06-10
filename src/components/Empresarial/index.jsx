@@ -9,7 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-// import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -49,12 +48,9 @@ const useStyles = makeStyles((theme) => ({
     cards: {
         backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-        // height: '15vh',
         width: '100%',
-        borderRadius: '15px 30px 15px',
-        // marginTop: '20px',
-        // marginBottom: '20px',
-        // marginLeft: '20px',
+        borderRadius: '15px',
+        marginTop: '2vh',
         minWidth: 300,
     },
     cardContent: {
@@ -159,15 +155,12 @@ export default function Empresarial(props) {
         setState(enty[0].data);
     }
     const deleteElem = (key) => {
-        // if (window.confirm("Você tem certeza que deseja deletar?")){
         database.collection("empresariais").doc(key).delete().then(() => {
             setEmpresarial(empresarial.filter((e) => e._key !== key));
-            // alert("Deletado com sucesso!")
         }).catch(() => {
             alert("Erro ao deletar")
         })
         handleClose()
-        // }
     }
     const [open, setOpen] = React.useState(false);
 
@@ -241,7 +234,7 @@ export default function Empresarial(props) {
 
                                 <br />
                                 <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button>
-                            </form>
+                            </form> <br />
                         </div>
                     </Grid>
 
@@ -250,6 +243,7 @@ export default function Empresarial(props) {
                         <div className={classes.empresariais}>
                             {empresarial.map((row) => {
                                 return (
+                                    <div>
                                     <Card key={row._key} className={classes.cards}>
                                         <CardContent>
                                             <p className={classes.cardContent}>{row.data.fantasia}</p>
@@ -270,29 +264,27 @@ export default function Empresarial(props) {
                                                         aria-labelledby="alert-dialog-slide-title"
                                                         aria-describedby="alert-dialog-slide-description"
                                                     >
-                                                        <DialogTitle id="alert-dialog-slide-title">{"ação necessaria!"}</DialogTitle>
+                                                        <DialogTitle id="alert-dialog-slide-title">{"Ação requerida"}</DialogTitle>
                                                         <DialogContent>
                                                             <DialogContentText id="alert-dialog-slide-description">
-                                                                este evento excluirá o acesso da lista!
+                                                            Tem certeza que deseja deletar o empresarial?
                                                             </DialogContentText>
                                                         </DialogContent>
                                                         <DialogActions>
                                                             <Button onClick={handleClose} color="primary">
-                                                                Disagree
+                                                                Não
                                                             </Button>
                                                             <Button onClick={() => { deleteElem(row._key) }} color="primary" autoFocus>
-                                                                Agree
+                                                                Sim
                                                             </Button>
                                                         </DialogActions>
                                                     </Dialog>
-
                                                 </div>
-                                                {/* <IconButton onClick={() => deleteElem(row._key)}>
-                                                    <DeleteIcon />
-                                                </IconButton> */}
                                             </div>
                                         </CardContent>
                                     </Card>
+                                    <br />
+                                    </div>
                                 )
                             })}
                         </div>

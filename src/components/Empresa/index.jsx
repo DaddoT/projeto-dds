@@ -9,8 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
-import Select from '@material-ui/core/Select/Select';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -50,12 +48,9 @@ const useStyles = makeStyles((theme) => ({
     cards: {
         backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-        // height: '15vh',
         width: '100%',
-        borderRadius: '15px 30px 15px',
-        // marginTop: '20px',
-        // marginBottom: '20px',
-        // marginLeft: '20px',
+        borderRadius: '15px',
+        marginTop: '2vh',
         minWidth: 300,
     },
     cardContent: {
@@ -182,15 +177,12 @@ export default function Empresa(props) {
         setSelectKey(enty[0].data.empresaMae.id)
     }
     const deleteElem = (key) => {
-        // if (window.confirm("Você tem certeza que deseja deletar?")){
         database.collection(COLLECTION_NAME).doc(key).delete().then(() => {
             setEmpresa(empresa.filter((e) => e._key !== key));
-            // alert("Deletado com sucesso!")
         }).catch(() => {
             alert("Erro ao deletar")
         })
         handleClose()
-        // }    
     }
 
     const [open, setOpen] = React.useState(false);
@@ -206,6 +198,7 @@ export default function Empresa(props) {
 
     const _draw_row = (row) => {
         return (
+            <div>
             <Card key={row._key} className={classes.cards}>
                 <CardContent>
                     <p className={classes.cardContent}>{row.data.fantasia}</p>
@@ -216,7 +209,7 @@ export default function Empresa(props) {
                             </Button>
                             <Button variant="outlined" color="primary" onClick={() => editElem(row._key)}>
                                 <EditIcon />
-                            </Button>
+                            </Button> 
 
                             <Dialog
                                 open={open}
@@ -226,32 +219,27 @@ export default function Empresa(props) {
                                 aria-labelledby="alert-dialog-slide-title"
                                 aria-describedby="alert-dialog-slide-description"
                             >
-                                <DialogTitle id="alert-dialog-slide-title">{"ação necessaria!"}</DialogTitle>
+                                <DialogTitle id="alert-dialog-slide-title">{"Ação Requerida"}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-slide-description">
-                                        este evento excluirá o acesso da lista!
+                                    Tem certeza que deseja deletar a empresa?
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={handleClose} color="primary">
-                                        Disagree
+                                        Não
                                     </Button>
                                     <Button onClick={() => deleteElem(row._key)} color="primary">
-                                        Agree
+                                        Sim
                                     </Button>
                                 </DialogActions>
-                                {/* <IconButton >
-                                    <EditIcon />
-                                </IconButton> */}
                             </Dialog>
-
                         </div>
-                        {/* <IconButton onClick={() => deleteElem(row._key)}>
-                            <DeleteIcon />
-                        </IconButton> */}
-                    </div>
+                    </div> 
                 </CardContent>
-            </Card>
+            </Card> 
+            <br />
+            </div> 
         );
     }
 
@@ -278,12 +266,6 @@ export default function Empresa(props) {
 
     const handleChange = (e, ref = false, doc = "") => {
         const { name, value } = e.currentTarget;
-        // if (ref === true){
-        //     setState({
-        //         ...state, 
-        //         [name]: database.doc(doc+"/"+value).ref
-        //     });
-        // } else {
         setState({
             ...state,
             [name]: value
@@ -298,7 +280,6 @@ export default function Empresa(props) {
             <Header {...props} />
 
             <div className={classes.root}>
-                {/* <div className={classes.form}> */}
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <div className={classes.form}>
@@ -321,26 +302,13 @@ export default function Empresa(props) {
                             <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento" />
                             <br />
                             <br />
-                            {/* <Select native value={selectKey} variant="outlined" size="small"name="empresaMae" required onChange={(e)=>handleChange(e, true,"empresariais")}>
-                                <option aria-label="None" value="">Selecione uma empresa</option>
-                                {empresaMae.map((e)=>{
-                                    return (<option value={e._key}>{e.data.fantasia}</option>)
-                                })}
-                                </Select> */}
                             <br /> 
-                            <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button>
-                        </form>
+                            <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
+                        </form> <br />
                         </div>
 
 
                     </Grid>
-                    {/* </div> */}
-
-                    {/* </div> */}
-                    {/* <style>borderRadius: '15px 100px 15px',</style> 
-                            style={{ overflow-y: scroll }}*/}
-
-                    {/* <Grid container spacing={3}> */}
                     <Grid item xs={6}>
                         <div className={classes.empresariais}>
                             {empresa.map((e) => _draw_row(e))}
