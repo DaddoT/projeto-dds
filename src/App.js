@@ -101,7 +101,7 @@ export default class App extends Component {
         <Switch>
 
           <PublicRoute user={this.state.user} path='/about' component={AboutText} />
-          <PublicRoute user={this.state.user} exact={true} path="/"  component={Index}/>
+          {/* <PublicRoute user={this.state.user} exact={true} path="/"  component={Index}/> */}
           <PublicRoute user={this.state.user} path='/pricing' component={PricingCard} />
 
 
@@ -111,6 +111,7 @@ export default class App extends Component {
 
 
           <UnAuthRoute authed={this.state.auth} path="/signin" component={SignIn}/>
+          <UnAuthRoute authed={this.state.auth} path="/" component={SignIn}/>
           <UnAuthRoute authed={this.state.auth} path="/signup" component={SignUpUser}/>
           <UnAuthRoute authed={this.state.auth} path="/recovery" component={RecoveryPassword}/>
           

@@ -1,36 +1,30 @@
 
 const tiers = [
   {
-    title: 'Basic',
-    price: '500',
-    description: ['Unlimited user number', '5 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Sign up for basic',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Extended',
-    subheader: 'Most Popular',
-    price: '1000',
-    description: [
-      'Unlimited user number',
-      '15 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
+    title: 'Basico',
+    price: '7000',
+    description: ['até 50 empresas', 'até 1500 acessos simultâneos', 'Assistência remota'],
+    buttonText: 'Aplicar',
   },
   {
     title: 'Premium',
-    price: '3000',
+    subheader: 'Para Trade Centers',
+    price: '15000',
     description: [
-      'Unlimited user number',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Número de empresas ilimitado',
+      '100 mil acessos simultâneos',
+      'Assistência remota 24h',
     ],
-    buttonText: 'become a premium',
-    buttonVariant: 'outlined',
+    buttonText: 'Aplicar',
+  },
+  {
+    title: 'Eventos',
+    description: [
+      'Orçamento personalizado',
+      'Treinamento de atendentes',
+      'Assistência remota durante o evento',
+    ],
+    buttonText: 'Aplicar',
   },
 ];
 

@@ -111,7 +111,7 @@ export default function Pricing(props) {
                         R${tier.price}
                       </Typography>
                       <Typography variant="h6" color="textSecondary">
-                        ,00
+                        ,00 / mês
                     </Typography>
                     </div>
                     <ul>

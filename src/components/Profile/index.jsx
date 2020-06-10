@@ -86,14 +86,14 @@ export default function ProfilePage(props) {
       flexGrow: 1,
     },
     p: {
-      fontFamily: 'monospace',
+      // fontFamily: 'monospace',
       color: '#040404',
       fontSize: '12px',
-      marginLeft: '10px',
-      textDecoration: 'none',
+      marginLeft: '2vh',
+      marginTop: '2vh',
+      textDecoration:  'none',
     },
     deslog: {
-      fontFamily: 'monospace',
       color: '#040404',
       fontSize: '12px',
       textDecoration: 'none',
@@ -221,18 +221,7 @@ export default function ProfilePage(props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
+ 
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -326,15 +315,15 @@ export default function ProfilePage(props) {
                             <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
                             <DialogContent>
                               <DialogContentText id="alert-dialog-description">
-                                este evento excluirá o acesso da lista!
+                                Tem certeza que deseja deletar o acesso?
                             </DialogContentText>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={handleClose} color="primary">
-                                Disagree
+                                NãO
                               </Button>
                               <Button onClick={(e) => deleteElem(el._key)} color="primary" autoFocus>
-                                Agree
+                                Sim
                               </Button>
                             </DialogActions>
                           </Dialog>
