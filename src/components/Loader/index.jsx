@@ -8,20 +8,20 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '15vh' 
+    marginTop: '15vh'
   },
-  }));
+}));
 
-export default function() {
+export default function () {
   const classes = useStyles();
-  return(
+  return (
     <div className={classes.loader}>
-    <Loader
-         type="Puff"
-         color="#282828"
-         height={500}
-         width={500}
-         timeout={10000} 
+      <Loader
+        type="Puff"
+        color="#282828"
+        height={500}
+        width={500}
+        timeout={10000}
       />
     </div>
   )

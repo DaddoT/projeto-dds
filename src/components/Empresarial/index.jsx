@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
     form: {
         marginTop: '10px',
         marginLeft: '30px',
-        paddingLeft:'10%',
-        paddingTop:'2%',
+        paddingLeft: '10%',
+        paddingTop: '2%',
         backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
     },
     divider: {
         minWidth: '10px',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cards: {
         backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
         width: '100%',
         borderRadius: '15px',
         marginTop: '2vh',
@@ -129,7 +129,6 @@ export default function Empresarial(props) {
     }
 
 
-    //
 
     useEffect(() => {
         const unsubscribe = database.collection(COLLECTION_NAME).where('uid', '==', props.user[0])
@@ -209,7 +208,6 @@ export default function Empresarial(props) {
             <Header {...props} />
 
             <div className={classes.root}>
-                {/* <div className={classes.form}> */}
                 <Grid container spacing={3}>
                     <Grid item xs={6}>
                         <div className={classes.form}>
@@ -238,52 +236,51 @@ export default function Empresarial(props) {
                         </div>
                     </Grid>
 
-                    {/* </div> */}
                     <Grid item xs={6}>
                         <div className={classes.empresariais}>
                             {empresarial.map((row) => {
                                 return (
                                     <div>
-                                    <Card key={row._key} className={classes.cards}>
-                                        <CardContent>
-                                            <p className={classes.cardContent}>{row.data.fantasia}</p>
-                                            <div className={classes.buttonCard}>
-                                                <div>
-                                                    <Button variant="outlined" color="primary" onClick={handleClickOpen} >
-                                                        <DeleteIcon />
-                                                    </Button>
-                                                    <Button variant="outlined" color="primary" onClick={(e) => editElem(row._key)}>
-                                                        <EditIcon />
-                                                    </Button>
+                                        <Card key={row._key} className={classes.cards}>
+                                            <CardContent>
+                                                <p className={classes.cardContent}>{row.data.fantasia}</p>
+                                                <div className={classes.buttonCard}>
+                                                    <div>
+                                                        <Button variant="outlined" color="primary" onClick={handleClickOpen} >
+                                                            <DeleteIcon />
+                                                        </Button>
+                                                        <Button variant="outlined" color="primary" onClick={(e) => editElem(row._key)}>
+                                                            <EditIcon />
+                                                        </Button>
 
-                                                    <Dialog
-                                                        open={open}
-                                                        TransitionComponent={Transition}
-                                                        keepMounted
-                                                        onClose={handleClose}
-                                                        aria-labelledby="alert-dialog-slide-title"
-                                                        aria-describedby="alert-dialog-slide-description"
-                                                    >
-                                                        <DialogTitle id="alert-dialog-slide-title">{"Ação requerida"}</DialogTitle>
-                                                        <DialogContent>
-                                                            <DialogContentText id="alert-dialog-slide-description">
-                                                            Tem certeza que deseja deletar o empresarial?
+                                                        <Dialog
+                                                            open={open}
+                                                            TransitionComponent={Transition}
+                                                            keepMounted
+                                                            onClose={handleClose}
+                                                            aria-labelledby="alert-dialog-slide-title"
+                                                            aria-describedby="alert-dialog-slide-description"
+                                                        >
+                                                            <DialogTitle id="alert-dialog-slide-title">{"Ação requerida"}</DialogTitle>
+                                                            <DialogContent>
+                                                                <DialogContentText id="alert-dialog-slide-description">
+                                                                    Tem certeza que deseja deletar o empresarial?
                                                             </DialogContentText>
-                                                        </DialogContent>
-                                                        <DialogActions>
-                                                            <Button onClick={handleClose} color="primary">
-                                                                Não
+                                                            </DialogContent>
+                                                            <DialogActions>
+                                                                <Button onClick={handleClose} color="primary">
+                                                                    Não
                                                             </Button>
-                                                            <Button onClick={() => { deleteElem(row._key) }} color="primary" autoFocus>
-                                                                Sim
+                                                                <Button onClick={() => { deleteElem(row._key) }} color="primary" autoFocus>
+                                                                    Sim
                                                             </Button>
-                                                        </DialogActions>
-                                                    </Dialog>
+                                                            </DialogActions>
+                                                        </Dialog>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                    <br />
+                                            </CardContent>
+                                        </Card>
+                                        <br />
                                     </div>
                                 )
                             })}

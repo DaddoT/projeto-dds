@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
     form: {
         marginTop: '10px',
         marginLeft: '30px',
-        paddingLeft:'10%',
-        paddingTop:'2%',
+        paddingLeft: '10%',
+        paddingTop: '2%',
         backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
     },
     divider: {
         minWidth: '10px',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cards: {
         backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
         width: '100%',
         borderRadius: '15px',
         marginTop: '2vh',
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     buttonCard: {
         display: 'inline-block',
         marginLeft: '60%',
-        width:'75%',
+        width: '75%',
     },
 }));
 
@@ -131,9 +131,6 @@ export default function Empresa(props) {
         })
     }
 
-
-    //
-
     useEffect(() => {
         const unsubscribe = database.collection(COLLECTION_NAME).where('uid', '==', props.user[0])
             .onSnapshot((query) => {
@@ -199,47 +196,47 @@ export default function Empresa(props) {
     const _draw_row = (row) => {
         return (
             <div>
-            <Card key={row._key} className={classes.cards}>
-                <CardContent>
-                    <p className={classes.cardContent}>{row.data.fantasia}</p>
-                    <div className={classes.buttonCard}>
-                        <div>
-                            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                                <DeleteIcon />
-                            </Button>
-                            <Button variant="outlined" color="primary" onClick={() => editElem(row._key)}>
-                                <EditIcon />
-                            </Button> 
+                <Card key={row._key} className={classes.cards}>
+                    <CardContent>
+                        <p className={classes.cardContent}>{row.data.fantasia}</p>
+                        <div className={classes.buttonCard}>
+                            <div>
+                                <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                                    <DeleteIcon />
+                                </Button>
+                                <Button variant="outlined" color="primary" onClick={() => editElem(row._key)}>
+                                    <EditIcon />
+                                </Button>
 
-                            <Dialog
-                                open={open}
-                                TransitionComponent={Transition}
-                                keepMounted
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-slide-title"
-                                aria-describedby="alert-dialog-slide-description"
-                            >
-                                <DialogTitle id="alert-dialog-slide-title">{"Ação Requerida"}</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-slide-description">
-                                    Tem certeza que deseja deletar a empresa?
+                                <Dialog
+                                    open={open}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-slide-title"
+                                    aria-describedby="alert-dialog-slide-description"
+                                >
+                                    <DialogTitle id="alert-dialog-slide-title">{"Ação Requerida"}</DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                            Tem certeza que deseja deletar a empresa?
                                     </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        Não
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleClose} color="primary">
+                                            Não
                                     </Button>
-                                    <Button onClick={() => deleteElem(row._key)} color="primary">
-                                        Sim
+                                        <Button onClick={() => deleteElem(row._key)} color="primary">
+                                            Sim
                                     </Button>
-                                </DialogActions>
-                            </Dialog>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
                         </div>
-                    </div> 
-                </CardContent>
-            </Card> 
-            <br />
-            </div> 
+                    </CardContent>
+                </Card>
+                <br />
+            </div>
         );
     }
 
@@ -270,7 +267,6 @@ export default function Empresa(props) {
             ...state,
             [name]: value
         });
-        //}
     }
 
 
@@ -284,27 +280,27 @@ export default function Empresa(props) {
                     <Grid item xs={6}>
                         <div className={classes.form}>
 
-                        <form onSubmit={(e) => onSubmit(e)}>
-                            <p>Insira os dados da empresa</p> <br />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small" /> <div className={classes.divider} />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small" /> <br />
-                            <br />
-                            <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false : true} helperText={errorCnpj.helperText} onBlur={(e) => _validateCNPJ(e)} onChange={(e) => { e.target.value = cnpj.format(e.target.value); handleChange(e); }} size="small" id="standard-size-small" />  <div className={classes.divider} />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small" /> <br />
-                            <br />
-                            <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e) => { e.target.value = _maskCEP(e.target.value); handleChange(e) }} onBlur={(e) => consultaCEP(e)} label="CEP" /> <div className={classes.divider} />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro" /><br />
-                            <br />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero" />  <div className={classes.divider} />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade" /> <br />
-                            <br />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado" /> <div className={classes.divider} />
-                            <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento" />
-                            <br />
-                            <br />
-                            <br /> 
-                            <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button> 
-                        </form> <br />
+                            <form onSubmit={(e) => onSubmit(e)}>
+                                <p>Insira os dados da empresa</p> <br />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="nome" label="Nome" value={state.nome} size="small" id="standard-size-small" /> <div className={classes.divider} />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" name="fantasia" value={state.fantasia} label="Nome fantasia" size="small" id="standard-size-small" /> <br />
+                                <br />
+                                <TextField required variant="outlined" name="cnpj" disabled={editing !== null} label="CNPJ" value={state.cnpj} error={errorCnpj.helperText.length === 0 ? false : true} helperText={errorCnpj.helperText} onBlur={(e) => _validateCNPJ(e)} onChange={(e) => { e.target.value = cnpj.format(e.target.value); handleChange(e); }} size="small" id="standard-size-small" />  <div className={classes.divider} />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" type="email" value={state.email} name="email" label="E-mail" size="small" id="standard-size-small" /> <br />
+                                <br />
+                                <TextField required variant="outlined" size="small" id="standard-size-small" value={state.cep} name="cep" onChange={(e) => { e.target.value = _maskCEP(e.target.value); handleChange(e) }} onBlur={(e) => consultaCEP(e)} label="CEP" /> <div className={classes.divider} />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" size="small" id="standard-size-small" name="logradouro" value={state.rua} label="Logradouro" /><br />
+                                <br />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.numero} size="small" name="numero" id="standard-size-small" label="Numero" />  <div className={classes.divider} />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.cidade} size="small" name="cidade" id="standard-size-small" label="Cidade" /> <br />
+                                <br />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.estado} size="small" name="estado" id="standard-size-small" label="Estado" /> <div className={classes.divider} />
+                                <TextField onChange={(e) => handleChange(e)} required variant="outlined" value={state.comp} size="small" name="comp" id="standard-size-small" label="Complemento" />
+                                <br />
+                                <br />
+                                <br />
+                                <Button type="submit" variant="contained" color="default">{editing == null ? "Criar" : "Editar"}</Button>
+                            </form> <br />
                         </div>
 
 

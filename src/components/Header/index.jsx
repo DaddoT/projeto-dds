@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import "./stylesHeader.css";
-import logo from './logoHeader.png';
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -28,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
     textDecoration: "none",
   },
-  bar:{
-      background: '#282828',
+  bar: {
+    background: '#282828',
   },
 }));
 
@@ -57,15 +56,13 @@ export default function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className= {classes.bar}>
+        <Toolbar className={classes.bar}>
 
-          {/* <img src={logo} className="logo-img" alt="logo" /> */}
 
           <Link to="/SignIn" className={classes.button}><Button color="inherit">Home</Button></Link>
           <Link to="/about" className={classes.button}><Button color="inherit">About</Button></Link>
           <Link to="/pricing" className={classes.button}><Button color="inherit">Pricing</Button></Link>
 
-          {/* kkkk */}
           <div className={classes.space}></div>
 
           {props.user !== null ? (
@@ -97,7 +94,7 @@ export default function Header(props) {
                 <Link to="/profile" className={classes.profile}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
                 <Link to="/empresa" className={classes.profile}><MenuItem onClick={handleClose}>Empresa</MenuItem></Link>
                 <Link to="/empresarial" className={classes.profile}><MenuItem onClick={handleClose}>Empresarial</MenuItem></Link>
-               
+
               </Menu>
             </div>
           ) : (

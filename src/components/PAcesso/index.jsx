@@ -5,138 +5,110 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Header from '../Header';
 import { Select, MenuItem, CardMedia } from "@material-ui/core";
 import { database, auth } from '../firebase.js';
+import Grid from '@material-ui/core/Grid';
+
 
 
 const PAcesso = (props) => {
-    const drawerWidth = 200;
+  const drawerWidth = 200;
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-          display: 'flex',
-          // background: 'rgba(255,255,255,0.5)',
-        },
-        drawer: {
-          [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-          },
-        },
-        appBar: {
-          zIndex: theme.zIndex.drawer + 1,
-        },
-        menuButton: {
-          marginRight: theme.spacing(2),
-          [theme.breakpoints.up('sm')]: {
-            display: 'none',
-          },
-        },
-        // necessary for content to be below app bar
-        toolbar: theme.mixins.toolbar,
-        drawerPaper: {
-          width: drawerWidth,
-          // background: 'rgba(255,255,255)',
-          backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-          height: '100%',
-        },
-        content: {
-          flexGrow: 1,
-          padding: theme.spacing(2),
-          background: 'rgba(255,255,255,0)',
-        },
-        container: {
-          backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-          marginRight: '0%',
-          paddingLeft: '10px',
-          borderRadius: '10px',
-        },
-        space: {
-          flexGrow: 1,
-        },
-        p: {
-          fontFamily: 'Sans-serif',
-          color: '#040404',
-          fontSize: '12px',
-          marginLeft: '2vh',
-          marginTop: '2vh',
-          textDecoration: 'none',
-        },
-        deslog: {
-          color: '#040404',
-          fontSize: '12px',
-          textDecoration: 'none',
-          marginLeft: '45px',
-          marginTop: '65vh',
-        },
-        table: {
-          width: '100%',
-          // background: 'rgba(255,255,255)',
-          backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-    
-        },
-        tableOver: {
-          maxHeight: 200,
-        },
-        horarios: {
-          width: '90%',
-        },
-        title: {
-          paddingTop: '1vh',
-          fontFamily: 'Sans-serif',
-          fontSize: '25px',
-        }
-      }));
-    
-      const classes = useStyles();
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(2),
+      background: 'rgba(255,255,255,0)',
+      maxWidth: 800,
+    },
+    container: {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+      marginRight: '0%',
+      paddingLeft: '10px',
+      borderRadius: '10px',
+    },
+    space: {
+      flexGrow: 1,
+    },
+    p: {
+      fontFamily: 'Sans-serif',
+      color: '#040404',
+      fontSize: '12px',
+      marginLeft: '2vh',
+      marginTop: '2vh',
+      textDecoration: 'none',
+    },
+    qrcode: {
+      maxWidth: 100,
+      minWidth: 50,
+      maxHeight: 100,
+      minHeight: 50,
+      marginLeft: '10%',
+      marginTop: '10px',
+    },
+  }));
 
-      const [image, setImage] = useState(null)
-      const [empresa, setEmpresa] = useState([])
+  const classes = useStyles();
 
-      useEffect(() => {
-        const unsubscribe = database.collection("empresa").where('uid', '==', props.user[0])
-            .onSnapshot((query) => {
-                let docs = [];
-                query.forEach((doc) => {
-                    const data = doc.data();
+  const [image, setImage] = useState(null)
+  const [empresa, setEmpresa] = useState([])
 
-                    docs.push({
-                        _key: doc.id,
-                        data: data,
-                    })
-                })
+  useEffect(() => {
+    const unsubscribe = database.collection("empresa").where('uid', '==', props.user[0])
+      .onSnapshot((query) => {
+        let docs = [];
+        query.forEach((doc) => {
+          const data = doc.data();
 
-                setEmpresa(docs)
-            })
-        return unsubscribe;
-    }, [])
+          docs.push({
+            _key: doc.id,
+            data: data,
+          })
+        })
 
-    const genLink = (key) =>{
-        return `https://chart.googleapis.com/chart?chs=512x512&cht=qr&chl=${key}&choe=UTF-8`
-    }
-    const handleSelect = (e)=>{
+        setEmpresa(docs)
+      })
+    return unsubscribe;
+  }, [])
 
-        setImage(e.target.value)
-    } 
+  const genLink = (key) => {
+    return `https://chart.googleapis.com/chart?chs=512x512&cht=qr&chl=${key}&choe=UTF-8`
+  }
+  const handleSelect = (e) => {
 
-    return (
+    setImage(e.target.value)
+  }
 
-        <div>
-            <Header {...props} />
+  return (
 
-            <main className={classes.content}>
-                <div className={classes.container}>
-                        {(image !== null) ? <div><img src={genLink(image)}/> <br/> <h1>{image}</h1></div>: null}
-                
-                    <hr/>
-                    <h1>Selecione a empresa</h1>
-                    <Select onChange={handleSelect} fullWidth>
-                        {empresa.map((e) => { return( <MenuItem key={e._key} value={e._key}>{e.data.fantasia}</MenuItem>)})}
-                    </Select>
-                </div>
-            </main>
-        </div>
-    )
+    <div>
+      <Header {...props} />
+      <div className={classes.root}>
+
+        <main className={classes.content}>
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <div className={classes.container}>
+
+                <h1>Selecione a empresa</h1>
+                <Select onChange={handleSelect} fullWidth>
+                  {empresa.map((e) => { return (<MenuItem key={e._key} value={e._key}>{e.data.fantasia}</MenuItem>) })}
+                </Select>
+
+                <hr />
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className={classes.qrcode}>
+                {(image !== null) ? <div className={classes.qrcode}><img src={genLink(image)} /> <h3>{image}</h3></div> : null}
+              </div>
+            </Grid>
+          </Grid>
+        </main>
+      </div>
+    </div>
+  )
 }
 export default PAcesso;

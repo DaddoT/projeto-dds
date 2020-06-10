@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     marginBottom: theme.spacing(2),
   },
-  
+
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
     marginTop: theme.spacing(8),
@@ -124,7 +124,7 @@ export default function Pricing(props) {
                   </CardContent>
                   <CardActions>
                     <Button fullWidth variant={tier.buttonVariant} color="primary">
-                      <Link href='/SignIn'  className={classes.button}>{tier.buttonText}</Link>
+                      <Link href='/SignIn' className={classes.button}>{tier.buttonText}</Link>
                     </Button>
                   </CardActions>
                 </Card>
