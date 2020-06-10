@@ -68,7 +68,7 @@ export default function ProfilePage(props) {
       width: drawerWidth,
       // background: 'rgba(255,255,255)',
       backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
       height: '100%',
     },
     content: {
@@ -77,8 +77,8 @@ export default function ProfilePage(props) {
       background: 'rgba(255,255,255,0)',
     },
     container: {
-       backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
       marginRight: '0%',
       paddingLeft: '10px',
     },
@@ -91,7 +91,7 @@ export default function ProfilePage(props) {
       fontSize: '12px',
       marginLeft: '2vh',
       marginTop: '2vh',
-      textDecoration:  'none',
+      textDecoration: 'none',
     },
     deslog: {
       color: '#040404',
@@ -104,10 +104,10 @@ export default function ProfilePage(props) {
       width: '100%',
       // background: 'rgba(255,255,255)',
       backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
-      
+        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+
     },
-    tableOver:{
+    tableOver: {
       maxHeight: 200,
     },
     horarios: {
@@ -221,7 +221,7 @@ export default function ProfilePage(props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
- 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -270,8 +270,8 @@ export default function ProfilePage(props) {
             <TextField onBlur={handleChange} onChange={handleChange} value={state.email} required variant="outlined" name="email" type="email" label="Seu Email" /> <div className={classes.divider} />
             <br />
             <div className={classes.horarios}>
-              <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }} inputProps={{ step: 300, }} />
-              <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }} inputProps={{ step: 300, }} />
+              <TextField onBlur={handleChange} onChange={handleChange} value={state.horac} required name="horac" label="Horario de chegada" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }}  />
+              <TextField onBlur={handleChange} onChange={handleChange} value={state.horas} required name="horas" label="Horario de saída" type="datetime-local" className={classes.horario} fullWidth InputLabelProps={{ shrink: true, }}  />
             </div> <br />
             <Button type="submit" variant="contained" color="default">{editing ? "Editar" : "Conceder"}</Button>
           </form>
@@ -292,7 +292,7 @@ export default function ProfilePage(props) {
                     <TableCell align="right"> Ações</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody  role="checkbox" tabIndex={-1}>
+                <TableBody role="checkbox" tabIndex={-1}>
                   {acessos.map((el) => {
                     return (
                       <TableRow key={el._key}>
