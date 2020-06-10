@@ -24,6 +24,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TablePagination from '@material-ui/core/TablePagination';
 
 const drawerWidth = 200;
 
@@ -44,6 +45,7 @@ export default function ProfilePage(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
+      // background: 'rgba(255,255,255,0.5)',
     },
     drawer: {
       [theme.breakpoints.up('sm')]: {
@@ -64,12 +66,21 @@ export default function ProfilePage(props) {
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
-      background: 'rgba(255,255,255,0.5)',
+      // background: 'rgba(255,255,255)',
+      backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
       height: '100%',
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing(2),
+      background: 'rgba(255,255,255,0)',
+    },
+    container: {
+       backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+      marginRight: '0%',
+      paddingLeft: '10px',
     },
     space: {
       flexGrow: 1,
@@ -90,11 +101,17 @@ export default function ProfilePage(props) {
       marginTop: '65vh',
     },
     table: {
-      width: '80%',
-      background: 'rgba(255,255,255,0.5)',
+      width: '100%',
+      // background: 'rgba(255,255,255)',
+      backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
+      
+    },
+    tableOver:{
+      maxHeight: 200,
     },
     horarios: {
-      width: '80%',
+      width: '90%',
     },
   }));
 
@@ -204,6 +221,18 @@ export default function ProfilePage(props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -263,7 +292,8 @@ export default function ProfilePage(props) {
 
         <Card className={classes.table}>
           <CardContent>
-            <TableContainer>
+
+            <TableContainer className={classes.tableOver} >
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
@@ -273,7 +303,7 @@ export default function ProfilePage(props) {
                     <TableCell align="right"> Ações</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody hover role="checkbox" tabIndex={-1}>
                   {acessos.map((el) => {
                     return (
                       <TableRow key={el._key}>
@@ -316,13 +346,25 @@ export default function ProfilePage(props) {
                           </IconButton> */}
                         </TableCell>
                       </TableRow>
+
                     )
                   })}
                 </TableBody>
               </Table>
             </TableContainer>
+            {/* <TablePagination
+              // rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              // count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            /> */}
+
           </CardContent>
         </Card>
+
       </main>
     </div>
   );

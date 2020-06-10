@@ -7,8 +7,7 @@ import ParticlesBg from "particles-bg";
 ReactDOM.render(
   <div>
     <App />
-    <ParticlesBg  type='cobweb' bg={true} />
-    {/* <ParticlesBg color="#ff0000" num={200} type="cobweb" bg={true} /> */}
+    <ParticlesBg  type='cobweb' num={200} bg={true} />
   </div>
   // <React.StrictMode>
   // </React.StrictMode>

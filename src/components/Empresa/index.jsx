@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     form: {
         marginTop: '10px',
         marginLeft: '30px',
+        paddingLeft:'10%',
+        paddingTop:'2%',
+        backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
     },
     divider: {
         minWidth: '10px',
@@ -44,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'auto',
     },
     cards: {
-        // display: 'inline-block',
-        backgroundColor: 'rgba(255,255,255,0.5)',
+        backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[700],
         // height: '15vh',
         width: '100%',
         borderRadius: '15px 30px 15px',
