@@ -221,6 +221,8 @@ export default function ProfilePage(props) {
       <div className={classes.toolbar} />
       <Button color="default" ><Link to="/empresa" className={classes.p}>Registrar empresa</Link></Button>
       <Button color="default" ><Link to="/empresarial" className={classes.p}> Registrar empresarial</Link></Button>
+      <Button color="default" ><Link to="/pacesso" className={classes.p}> Pagina de Acesso</Link></Button>
+      <Button color="default" ><Link to="/vacesso" className={classes.p}> Validar de Acesso</Link></Button>
       <Button color="default" onClick={() => signOut()} className={classes.deslog}>Deslogar</Button>
     </div>
   );

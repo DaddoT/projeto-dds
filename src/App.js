@@ -16,8 +16,8 @@ import {
 } from "react-router-dom";
 import Empresa from './components/Empresa';
 import Empresarial from './components/Empresarial';
-import Index from './components/Index';
-
+import PAcesso from './components/PAcesso';
+import VAcesso from './components/VAcesso';
 
 
 function PrivateRoute ({component: Component, authed, user, ...rest}) {
@@ -108,6 +108,8 @@ export default class App extends Component {
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/profile' component={Profile} />
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresa' component={Empresa} />
           <PrivateRoute authed={this.state.auth} user={this.state.user} path='/empresarial' component={Empresarial} />
+          <PrivateRoute authed={this.state.auth} user={this.state.user} path='/pacesso' component={PAcesso} />
+          <PrivateRoute authed={this.state.auth} user={this.state.user} path='/vacesso' component={VAcesso} />
 
 
           <UnAuthRoute authed={this.state.auth} path="/signin" component={SignIn}/>
