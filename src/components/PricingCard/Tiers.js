@@ -1,7 +1,7 @@
 
 const tiers = [
   {
-    title: 'Basico',
+    title: 'Basic',
     price: '7000',
     description: ['até 50 empresas', 'até 1500 acessos simultâneos', 'Assistência remota'],
     buttonText: 'Aplicar',
@@ -18,11 +18,12 @@ const tiers = [
     buttonText: 'Aplicar',
   },
   {
-    title: 'Eventos',
+    title: 'Medium',
+    price: '10000',
     description: [
-      'Orçamento personalizado',
-      'Treinamento de atendentes',
-      'Assistência remota durante o evento',
+      'até 250 empresas',
+      'até 7000 acessos simultâneos',
+      'Assistência remota 24h',
     ],
     buttonText: 'Aplicar',
   },
